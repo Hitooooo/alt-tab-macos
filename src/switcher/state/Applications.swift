@@ -13,7 +13,6 @@ class Applications {
     // B — ≤1 Dock-badge fetch per second
     static let dockBadgeThrottler = Throttler(delayInMs: 1000)
     // C — cap a resource: ≤1 thumbnail capture per window per 200ms
-    static let screenshotThrottler = ThrottlerWithKey(delayInMs: 200)
 
     static func initialDiscovery() {
         addInitialRunningApplications()

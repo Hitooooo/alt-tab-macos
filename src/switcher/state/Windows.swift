@@ -254,7 +254,6 @@ class Windows {
             session.selectedIndex = newIndex
             session.selectedTarget = list[newIndex].id
             TilesView.highlight(oldIndex)
-            WindowThumbnails.previewSelectedIfNeeded()
             index = session.selectedIndex
             lastWindowActivityType = .focus
         }
@@ -423,12 +422,6 @@ class Windows {
                 view.window_ = nil
             }
         }
-        // Same for PreviewPanel: if the previewed window is being removed, drop its IOSurface.
-        for w in windows {
-            if let wid = w.cgWindowId {
-                PreviewPanel.clearIfShowing(wid)
-            }
-        }
         for w in windows {
             if w.application.focusedWindow?.cgWindowId == w.cgWindowId {
                 w.application.focusedWindow = nil
@@ -446,17 +439,6 @@ class Windows {
             w.lastFocusOrder -= howManyToShift
             return false
         }
-        // Drop the cached `SCWindow` for any window we're removing. Otherwise the array
-        // grows over time as new shareable-content refreshes leave stale entries behind
-        // (see leak #5).
-        if #available(macOS 14.0, *) {
-            let removedWids = Set(windows.compactMap { $0.cgWindowId })
-            if !removedWids.isEmpty {
-                BackgroundWork.screenshotsQueue.addOperation {
-                    WindowCaptureScreenshots.cachedSCWindows.withLock { $0.removeAll { removedWids.contains($0.windowID) } }
-                }
-            }
-        }
         for w in windows {
             if let wid = w.cgWindowId {
                 AXCallScheduler.shared.removeEntries(withPrefix: "wid-\(wid)-")
@@ -465,7 +447,6 @@ class Windows {
                 AXCallScheduler.shared.removeEntry(key: "sub-win-\(wid)")
                 AXCallScheduler.shared.removeEntries(withPrefix: "sub-win-\(wid)-")
                 Applications.windowAttributesThrottler.removeEntries(withPrefix: "\(wid)-")
-                Applications.screenshotThrottler.removeEntry(withKey: "capture-wid-\(wid)")
             }
             // Detach the per-window AX observer's runloop source. Without this the AX events
             // thread's runloop accumulates one orphaned source per window-ever-opened (leak #1,

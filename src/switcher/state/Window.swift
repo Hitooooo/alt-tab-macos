@@ -158,7 +158,7 @@ class Window {
     func refreshThumbnail(_ screenshot: CALayerContents) {
         thumbnail = screenshot
         if !SwitcherSession.isActive || !shouldShowTheUser { return }
-        if let position, let size,
+        if let size,
            let view = (TilesView.recycledViews.first { $0.window_?.cgWindowId == cgWindowId }) {
             if !view.thumbnail.isHidden {
                 let thumbnailSize = TileView.thumbnailSize(size, false)
@@ -169,7 +169,6 @@ class Window {
                     App.refreshOpenUiAfterExternalEvent([])
                 }
             }
-            PreviewPanel.updateIfShowing(cgWindowId, screenshot, position, size)
         }
     }
 
@@ -252,7 +251,6 @@ class Window {
         if let altTabWindow = altTabWindow() {
             App.shared.activate(ignoringOtherApps: true)
             altTabWindow.makeKeyAndOrderFront(nil)
-            WindowThumbnails.previewSelectedIfNeeded()
         } else if self.isWindowlessApp || cgWindowId == nil {
             if let bundleUrl = application.bundleURL, self.isWindowlessApp {
                 if (try? NSWorkspace.shared.launchApplication(at: bundleUrl, configuration: [:])) == nil {
@@ -261,7 +259,6 @@ class Window {
             } else {
                 application.runningApplication.activate(options: .activateAllWindows)
             }
-            WindowThumbnails.previewSelectedIfNeeded()
         } else {
             // macOS bug: when switching to a System Preferences window in another space, it switches to that space,
             // but quickly switches back to another window in that space
@@ -299,9 +296,6 @@ class Window {
                     var originPsn = ProcessSerialNumber()
                     GetProcessForPID(originFrontPid, &originPsn)
                     SLSSpaceSetFrontPSN(CGS_CONNECTION, originSpaceId, originPsn)
-                }
-                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(50)) {
-                    WindowThumbnails.previewSelectedIfNeeded()
                 }
             }
         }

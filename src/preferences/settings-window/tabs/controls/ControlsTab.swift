@@ -74,7 +74,7 @@ class ControlsTab {
         "windowOrder", "shortcutStyle",
         "showAppsOrWindows", "showTabsAsWindows",
         "appearanceStyleOverride", "appearanceSizeOverride", "appearanceThemeOverride",
-        "shortcutStyleOverride", "previewFocusedWindowOverride",
+        "shortcutStyleOverride",
     ]
     private static let arrowKeys = ["←", "→", "↑", "↓"]
     private static let arrowKeyCodes: Set<KeyCode> = [.leftArrow, .rightArrow, .upArrow, .downArrow]
@@ -104,7 +104,6 @@ class ControlsTab {
     private static var shortcutCountButtons: NSSegmentedControl?
     private static var shortcutRowsScrollView: NSScrollView?
     private static var shortcutRowsScrollObserver: NSObjectProtocol?
-    private static var proLockObserver: NSObjectProtocol?
 
     // MARK: - Initialization / teardown
 
@@ -136,23 +135,10 @@ class ControlsTab {
         editor.bind(toShortcut: initialBindIndex)
         (0..<Preferences.shortcutCount).forEach { initializeShortcutRecorderState($0) }
 
-        if proLockObserver == nil {
-            proLockObserver = NotificationCenter.default.addObserver(
-                forName: ProTransitionManager.proLockStateDidChangeNotification,
-                object: nil, queue: .main
-            ) { _ in
-                refreshShortcutUi()
-                editor?.refreshFromCurrentBind()
-            }
-        }
         return view
     }
 
     static func cleanup() {
-        if let observer = proLockObserver {
-            NotificationCenter.default.removeObserver(observer)
-            proLockObserver = nil
-        }
         if let observer = shortcutRowsScrollObserver {
             NotificationCenter.default.removeObserver(observer)
             shortcutRowsScrollObserver = nil
@@ -512,7 +498,6 @@ class ControlsTab {
             let row = shortcutRows[index]
             row.setContent(shortcutTitle(index), shortcutSummary(index))
             row.setSelected(index == selectedShortcutIndex && selectedShortcutIndex != gestureSelectionIndex)
-            row.setProBadge(index >= 1)
             rows.addArrangedSubview(row)
             // Re-create the row↔stack width constraint each layout: AppKit drops it when the row is
             // removed from the stack by `clearArrangedSubviews`. The row's height constraint is
@@ -586,10 +571,6 @@ class ControlsTab {
     private static func addShortcutSlot() {
         let currentCount = Preferences.shortcutCount
         guard currentCount < Preferences.maxShortcutCount else { return }
-        if currentCount >= 1 && LicenseManager.shared.isProLocked {
-            UpgradeTab.navigateToUpgradeTab()
-            return
-        }
         resetShortcutPreferences(currentCount)
         setAddedShortcutTriggerDefaults(currentCount)
         selectedShortcutIndex = currentCount

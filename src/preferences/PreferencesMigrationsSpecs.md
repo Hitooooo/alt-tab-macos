@@ -15,6 +15,7 @@
 - **Idempotency**: `migrateExceptionsTitleArray` must be safe to re-run — already-migrated (array-form) data fails to decode into the legacy (`String?`) shape, triggering an early return that leaves data untouched.
 - **A quirk worth knowing** (pinned by a test): the global→per-shortcut grouping migration copies the global value into the indexed keys, but because index 0's key *is* the old global key, that key is removed at the end — so slot 0 ends up unset while slots 2…10 hold the value.
 - **Testability**: production reads/writes `UserDefaults.standard`; the tests inject an isolated suite via `PreferencesMigrations.defaults` (reset in `tearDown`) so they never touch the dev machine's real prefs.
+- **Legacy gate cleanup**: remembered global and shortcut-0 values are restored from the old license defaults suite when their enum indices are valid. The obsolete defaults domain is then removed; Keychain is never accessed.
 - **Not covered** (documented gaps): `migrateShortcutPreferencesToSecureCoding` (needs the real NSKeyedArchiver/ShortcutRecorder codec, stubbed compile-only) and `migrateLoginItem` (mutates real Login Items via deprecated LaunchServices APIs).
 
 ---
@@ -28,6 +29,14 @@ Mirrors `PreferencesMigrationsTests.swift` 1:1.
 - **testVersionGatingRunsForEqualVersion** — stored == threshold → runs.
 - **testVersionGatingSkipsForNewerStoredVersion** — stored `11.0.0` > `10.13.0` → skipped.
 - **testVersionGatingUsesNumericCompareNotLexical** — stored `9.0.0` < `10.0.0` numerically → runs (guards the `.numeric` option).
+
+### A2. Legacy gated preference restoration
+- **testLegacyGatedPreferencesRestoreValidRememberedValues** — all six valid remembered indices restore to their original preference keys and the old domain is removed.
+- **testLegacyGatedPreferencesWithNoRememberedValuesIsNoOp** — an empty legacy domain leaves current preferences unchanged.
+- **testLegacyGatedPreferencesIgnoreOutOfRangeValues** — invalid enum indices are ignored rather than persisted.
+- **testLegacyGatedPreferencesRestorationIsIdempotent** — running again after cleanup leaves restored values unchanged.
+- **testRemovedThumbnailStyleBecomesAppIcons** — removed global and per-shortcut thumbnail selections migrate to App Icons while other styles remain unchanged.
+- **testRemovedThumbnailStyleMigrationIsIdempotent** — repeated migration keeps the converted App Icons value stable.
 
 ### B. Grouping moved global → per-shortcut
 - **testGroupingCopiesGlobalShowAppsOrWindowsToPerShortcutKeysAndRemovesGlobal** — global value lands in `showAppsOrWindows2…10`; the global key is removed (slot 0 ends nil — the documented quirk).

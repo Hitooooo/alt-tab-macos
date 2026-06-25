@@ -16,17 +16,22 @@ import XCTest
 final class PreferencesMigrationsTests: XCTestCase {
     var defaults: UserDefaults!
     var suiteName: String!
+    var legacyDefaults: UserDefaults!
+    var legacySuiteName: String!
 
     override func setUp() {
         super.setUp()
         suiteName = "test-migrations-\(UUID().uuidString)"
         defaults = UserDefaults(suiteName: suiteName)!
         PreferencesMigrations.defaults = defaults
+        legacySuiteName = "test-legacy-license-\(UUID().uuidString)"
+        legacyDefaults = UserDefaults(suiteName: legacySuiteName)!
     }
 
     override func tearDown() {
         PreferencesMigrations.defaults = .standard
         UserDefaults().removePersistentDomain(forName: suiteName)
+        UserDefaults().removePersistentDomain(forName: legacySuiteName)
         super.tearDown()
     }
 
@@ -47,6 +52,74 @@ final class PreferencesMigrationsTests: XCTestCase {
     func testVersionGatingUsesNumericCompareNotLexical() {
         // Lexical would say "9" > "10"; numeric must say 9 < 10 so the migration still runs.
         XCTAssertTrue(PreferencesMigrations.shouldRun("9.0.0", "10.0.0"))
+    }
+
+    // MARK: - A2. Legacy gated preference restoration
+
+    /// Valid remembered values restore all global and shortcut-0 preferences before the old domain is removed.
+    func testLegacyGatedPreferencesRestoreValidRememberedValues() {
+        let values = [
+            "rememberedAppearanceStyle": 2,
+            "rememberedAppearanceSize": 3,
+            "rememberedShortcutStyle": 2,
+            "rememberedAppearanceStyleOverride": 1,
+            "rememberedAppearanceSizeOverride": 3,
+            "rememberedShortcutStyleOverride": 2,
+        ]
+        values.forEach { legacyDefaults.set($0.value, forKey: "proTransition.\($0.key)") }
+        PreferencesMigrations.restoreLegacyGatedPreferences(legacyDefaults, legacySuiteName)
+        XCTAssertEqual(defaults.string(forKey: "appearanceStyle"), "2")
+        XCTAssertEqual(defaults.string(forKey: "appearanceSize"), "3")
+        XCTAssertEqual(defaults.string(forKey: "shortcutStyle"), "2")
+        XCTAssertEqual(defaults.string(forKey: "appearanceStyleOverride"), "1")
+        XCTAssertEqual(defaults.string(forKey: "appearanceSizeOverride"), "3")
+        XCTAssertEqual(defaults.string(forKey: "shortcutStyleOverride"), "2")
+        XCTAssertNil(UserDefaults.standard.persistentDomain(forName: legacySuiteName))
+    }
+
+    /// An empty legacy domain changes no current preference and is still safe to remove.
+    func testLegacyGatedPreferencesWithNoRememberedValuesIsNoOp() {
+        defaults.set("1", forKey: "appearanceStyle")
+        PreferencesMigrations.restoreLegacyGatedPreferences(legacyDefaults, legacySuiteName)
+        XCTAssertEqual(defaults.string(forKey: "appearanceStyle"), "1")
+        XCTAssertNil(UserDefaults.standard.persistentDomain(forName: legacySuiteName))
+    }
+
+    /// Invalid remembered enum indices are ignored rather than corrupting current preferences.
+    func testLegacyGatedPreferencesIgnoreOutOfRangeValues() {
+        defaults.set("1", forKey: "appearanceStyle")
+        legacyDefaults.set(3, forKey: "proTransition.rememberedAppearanceStyle")
+        legacyDefaults.set(-1, forKey: "proTransition.rememberedAppearanceSize")
+        PreferencesMigrations.restoreLegacyGatedPreferences(legacyDefaults, legacySuiteName)
+        XCTAssertEqual(defaults.string(forKey: "appearanceStyle"), "1")
+        XCTAssertNil(defaults.string(forKey: "appearanceSize"))
+    }
+
+    /// Re-running after the legacy domain was removed leaves the first restored values unchanged.
+    func testLegacyGatedPreferencesRestorationIsIdempotent() {
+        legacyDefaults.set(2, forKey: "proTransition.rememberedAppearanceStyle")
+        PreferencesMigrations.restoreLegacyGatedPreferences(legacyDefaults, legacySuiteName)
+        PreferencesMigrations.restoreLegacyGatedPreferences(legacyDefaults, legacySuiteName)
+        XCTAssertEqual(defaults.string(forKey: "appearanceStyle"), "2")
+    }
+
+    /// Removed thumbnail selections become App Icons globally and for each shortcut override.
+    func testRemovedThumbnailStyleBecomesAppIcons() {
+        defaults.set("0", forKey: "appearanceStyle")
+        defaults.set("0", forKey: "appearanceStyleOverride2")
+        defaults.set("2", forKey: "appearanceStyleOverride3")
+        PreferencesMigrations.migrateRemovedThumbnailStyle()
+        XCTAssertEqual(defaults.string(forKey: "appearanceStyle"), "1")
+        XCTAssertEqual(defaults.string(forKey: "appearanceStyleOverride2"), "1")
+        XCTAssertEqual(defaults.string(forKey: "appearanceStyleOverride3"), "2")
+    }
+
+    /// Re-running the migration leaves already converted values unchanged.
+    func testRemovedThumbnailStyleMigrationIsIdempotent() {
+        defaults.set("0", forKey: "appearanceStyle")
+        PreferencesMigrations.migrateRemovedThumbnailStyle()
+        PreferencesMigrations.migrateRemovedThumbnailStyle()
+        XCTAssertEqual(defaults.string(forKey: "appearanceStyle"), "1")
     }
 
     // MARK: - B. Grouping moved global -> per-shortcut
@@ -351,10 +424,6 @@ enum ShowHowPreference {
 
 extension App {
     static let version = "99.99.99"
-}
-
-enum ProTransitionState {
-    static func markFreshInstallIfUnknown(_ value: Bool) {}
 }
 
 enum AxError: Error {

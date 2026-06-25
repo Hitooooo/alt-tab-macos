@@ -15,15 +15,46 @@ class PreferencesMigrations {
     }
 
     static func migratePreferences() {
+        let legacyLicenseSuiteName = "\(App.bundleIdentifier).license"
+        if let legacyLicenseDefaults = UserDefaults(suiteName: legacyLicenseSuiteName) {
+            restoreLegacyGatedPreferences(legacyLicenseDefaults, legacyLicenseSuiteName)
+        }
+        migrateRemovedThumbnailStyle()
         let preferencesKey = "preferencesVersion"
         let existingVersion = Self.defaults.string(forKey: preferencesKey)
-        ProTransitionState.markFreshInstallIfUnknown(existingVersion == nil)
         if let versionInPlist = existingVersion {
             if versionInPlist != "#VERSION#" && versionInPlist.compare(App.version, options: .numeric) != .orderedDescending {
                 updateToNewPreferences(versionInPlist)
             }
         }
         Self.defaults.set(App.version, forKey: preferencesKey)
+    }
+
+    /// Restore values that the Pro lock moved out of the main preferences domain, then remove the
+    /// obsolete non-secret license defaults. Keychain items are deliberately left untouched.
+    static func restoreLegacyGatedPreferences(_ legacyDefaults: UserDefaults, _ legacySuiteName: String) {
+        let mappings: [(remembered: String, preference: String, count: Int)] = [
+            ("rememberedAppearanceStyle", "appearanceStyle", 3),
+            ("rememberedAppearanceSize", "appearanceSize", 4),
+            ("rememberedShortcutStyle", "shortcutStyle", 3),
+            ("rememberedAppearanceStyleOverride", "appearanceStyleOverride", 3),
+            ("rememberedAppearanceSizeOverride", "appearanceSizeOverride", 4),
+            ("rememberedShortcutStyleOverride", "shortcutStyleOverride", 3),
+        ]
+        for mapping in mappings {
+            let key = "proTransition.\(mapping.remembered)"
+            guard let value = legacyDefaults.object(forKey: key) as? Int,
+                  (0..<mapping.count).contains(value) else { continue }
+            Self.defaults.set(String(value), forKey: mapping.preference)
+        }
+        legacyDefaults.removePersistentDomain(forName: legacySuiteName)
+    }
+
+    static func migrateRemovedThumbnailStyle() {
+        let keys = ["appearanceStyle"] + (0...Preferences.maxShortcutCount).map { Preferences.indexToName("appearanceStyleOverride", $0) }
+        for key in keys where Self.defaults.string(forKey: key) == "0" {
+            Self.defaults.set("1", forKey: key)
+        }
     }
 
     static func updateToNewPreferences(_ versionInPlist: String) {

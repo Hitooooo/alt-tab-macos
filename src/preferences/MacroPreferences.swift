@@ -285,11 +285,11 @@ enum AppearanceStylePreference: CaseIterable, ImageMacroPreference {
     case thumbnails
     case appIcons
     case titles
+    static let visibleCases: [AppearanceStylePreference] = [.appIcons, .titles]
 
     var localizedString: LocalizedString {
         switch self {
-            case .thumbnails: return NSLocalizedString("Thumbnails", comment: "")
-            case .appIcons: return NSLocalizedString("App Icons", comment: "")
+            case .thumbnails, .appIcons: return NSLocalizedString("App Icons", comment: "")
             case .titles: return NSLocalizedString("Titles", comment: "")
         }
     }
@@ -298,8 +298,7 @@ enum AppearanceStylePreference: CaseIterable, ImageMacroPreference {
         let width = CGFloat(150)
         let height = width / 1.6
         switch self {
-            case .thumbnails: return WidthHeightImage(width: width, height: height, name: "thumbnails")
-            case .appIcons: return WidthHeightImage(width: width, height: height, name: "app_icons")
+            case .thumbnails, .appIcons: return WidthHeightImage(width: width, height: height, name: "app_icons")
             case .titles: return WidthHeightImage(width: width, height: height, name: "titles")
         }
     }
