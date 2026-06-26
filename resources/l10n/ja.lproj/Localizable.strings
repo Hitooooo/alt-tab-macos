@@ -3,7 +3,7 @@
 "4-finger Horizontal Swipe" = "4 本指の水平スワイプ";
 "4-finger Vertical Swipe" = "4 本指の垂直スワイプ";
 "A debug profile (versions, settings, hardware) is attached to help diagnose the issue." = "問題の診断に役立てるため、デバッグ情報(バージョン、設定、ハードウェア)を添付しています。";
-"A new version of AltTab is available" = "AltTab の新しいバージョンが利用可能です";
+"A new version of CmdTab is available" = "CmdTab の新しいバージョンが利用可能です";
 "About %@" = "%@ について";
 "Accessibility" = "アクセシビリティ";
 "Active app" = "アクティブな App";
@@ -19,9 +19,9 @@
 "All Spaces" = "すべての Space";
 "Allowed" = "許可";
 "Alphabetical Order" = "アルファベット順";
-"AltTab crashed last time you used it. Sending a crash report will help get the issue fixed" = "前回の使用時に AltTab がクラッシュしました。クラッシュレポートを送信すると問題の修正に役立ちます";
-"AltTab needs some permissions" = "AltTab にはいくつかの権限が必要です";
-"AltTab will show if the window is currently minimized or fullscreen with a status icon." = "ウインドウが現在最小化またはフルスクリーンの場合、AltTab はステータスアイコンで表示します。";
+"CmdTab crashed last time you used it. Sending a crash report will help get the issue fixed" = "前回の使用時に CmdTab がクラッシュしました。クラッシュレポートを送信すると問題の修正に役立ちます";
+"CmdTab needs some permissions" = "CmdTab にはいくつかの権限が必要です";
+"CmdTab will show if the window is currently minimized or fullscreen with a status icon." = "ウインドウが現在最小化またはフルスクリーンの場合、CmdTab はステータスアイコンで表示します。";
 "Always" = "常に";
 "Always send crash reports" = "常にクラッシュレポートを送信";
 "and press" = "を押す";
@@ -81,7 +81,7 @@
 "Go back" = "戻る";
 "Group apps" = "App をグループ化";
 "Group tabs" = "タブをグループ化";
-"Help improve AltTab" = "AltTab の改善に協力";
+"Help improve CmdTab" = "CmdTab の改善に協力";
 "Hide" = "非表示";
 "Hide colored circles on mouse hover" = "マウスホバー時のカラーサークルを非表示";
 "Hide Space number labels" = "Space 番号ラベルを非表示";
@@ -99,7 +99,7 @@
 "Later" = "後で";
 "Light" = "ライト";
 "Lock search" = "検索をロック";
-"macOS reserves ⌘⌥⎋, ⌘⌥⇧⎋, and ⌘⌥⇧⌃⎋ for Force Quit and they cannot be unbound. AltTab cannot use them.\n\nYour change would assign one of these to: %@." = "macOS は ⌘⌥⎋、⌘⌥⇧⎋、⌘⌥⇧⌃⎋ を強制終了用に予約しており、解除できません。AltTab では使用できません。\n\n変更しようとしている割り当て: %@。";
+"macOS reserves ⌘⌥⎋, ⌘⌥⇧⎋, and ⌘⌥⇧⌃⎋ for Force Quit and they cannot be unbound. CmdTab cannot use them.\n\nYour change would assign one of these to: %@." = "macOS は ⌘⌥⎋、⌘⌥⇧⎋、⌘⌥⇧⌃⎋ を強制終了用に予約しており、解除できません。CmdTab では使用できません。\n\n変更しようとしている割り当て: %@。";
 "Medium" = "中";
 "Menubar icon" = "メニューバーアイコン";
 "Middle" = "中央";
@@ -121,7 +121,7 @@
 "Order windows by" = "ウインドウの並び順";
 "Ordering & Grouping" = "並び順とグループ化";
 "Overridden in Shortcut:" = "上書きされているショートカット:";
-"Please drag AltTab into the Applications folder manually." = "AltTab を手動でアプリケーションフォルダにドラッグしてください。";
+"Please drag CmdTab into the Applications folder manually." = "CmdTab を手動でアプリケーションフォルダにドラッグしてください。";
 "Please fill in the form" = "フォームを入力してください";
 "Quit %@" = "%@ を終了";
 "Quit app" = "App を終了";
@@ -135,7 +135,7 @@
 "Restart Now" = "今すぐ再起動";
 "Screen including menu bar" = "メニューバーを含む画面";
 "Screen including mouse" = "マウスのある画面";
-"Screen showing AltTab" = "AltTab を表示する画面";
+"Screen showing CmdTab" = "CmdTab を表示する画面";
 "Search" = "検索";
 "Select next window" = "次のウインドウを選択";
 "Select previous window" = "前のウインドウを選択";

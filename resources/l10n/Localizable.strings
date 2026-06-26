@@ -14,9 +14,9 @@
 "A debug profile (versions, settings, hardware) is attached to help diagnose the issue." = "A debug profile (versions, settings, hardware) is attached to help diagnose the issue.";
 
 /* No comment provided by engineer. */
-"A new version of AltTab is available" = "A new version of AltTab is available";
+"A new version of CmdTab is available" = "A new version of CmdTab is available";
 
-/* Menubar option. %@ is AltTab */
+/* Menubar option. %@ is CmdTab */
 "About %@" = "About %@";
 
 /* No comment provided by engineer. */
@@ -62,13 +62,13 @@
 "Alphabetical Order" = "Alphabetical Order";
 
 /* No comment provided by engineer. */
-"AltTab crashed last time you used it. Sending a crash report will help get the issue fixed" = "AltTab crashed last time you used it. Sending a crash report will help get the issue fixed";
+"CmdTab crashed last time you used it. Sending a crash report will help get the issue fixed" = "CmdTab crashed last time you used it. Sending a crash report will help get the issue fixed";
 
 /* No comment provided by engineer. */
-"AltTab needs some permissions" = "AltTab needs some permissions";
+"CmdTab needs some permissions" = "CmdTab needs some permissions";
 
 /* No comment provided by engineer. */
-"AltTab will show if the window is currently minimized or fullscreen with a status icon." = "AltTab will show if the window is currently minimized or fullscreen with a status icon.";
+"CmdTab will show if the window is currently minimized or fullscreen with a status icon." = "CmdTab will show if the window is currently minimized or fullscreen with a status icon.";
 
 /* No comment provided by engineer. */
 "Always" = "Always";
@@ -248,7 +248,7 @@
 "Group tabs" = "Group tabs";
 
 /* No comment provided by engineer. */
-"Help improve AltTab" = "Help improve AltTab";
+"Help improve CmdTab" = "Help improve CmdTab";
 
 /* No comment provided by engineer. */
 "Hide" = "Hide";
@@ -302,7 +302,7 @@
 "Lock search" = "Lock search";
 
 /* No comment provided by engineer. */
-"macOS reserves ⌘⌥⎋, ⌘⌥⇧⎋, and ⌘⌥⇧⌃⎋ for Force Quit and they cannot be unbound. AltTab cannot use them.\n\nYour change would assign one of these to: %@." = "macOS reserves ⌘⌥⎋, ⌘⌥⇧⎋, and ⌘⌥⇧⌃⎋ for Force Quit and they cannot be unbound. AltTab cannot use them.\n\nYour change would assign one of these to: %@.";
+"macOS reserves ⌘⌥⎋, ⌘⌥⇧⎋, and ⌘⌥⇧⌃⎋ for Force Quit and they cannot be unbound. CmdTab cannot use them.\n\nYour change would assign one of these to: %@." = "macOS reserves ⌘⌥⎋, ⌘⌥⇧⎋, and ⌘⌥⇧⌃⎋ for Force Quit and they cannot be unbound. CmdTab cannot use them.\n\nYour change would assign one of these to: %@.";
 
 /* No comment provided by engineer. */
 "Medium" = "Medium";
@@ -368,12 +368,12 @@
 "Overridden in Shortcut:" = "Overridden in Shortcut:";
 
 /* LetsMove replacement alert */
-"Please drag AltTab into the Applications folder manually." = "Please drag AltTab into the Applications folder manually.";
+"Please drag CmdTab into the Applications folder manually." = "Please drag CmdTab into the Applications folder manually.";
 
 /* No comment provided by engineer. */
 "Please fill in the form" = "Please fill in the form";
 
-/* %@ is AltTab */
+/* %@ is CmdTab */
 "Quit %@" = "Quit %@";
 
 /* No comment provided by engineer. */
@@ -410,7 +410,7 @@
 "Screen including mouse" = "Screen including mouse";
 
 /* No comment provided by engineer. */
-"Screen showing AltTab" = "Screen showing AltTab";
+"Screen showing CmdTab" = "Screen showing CmdTab";
 
 /* No comment provided by engineer. */
 "Search" = "Search";

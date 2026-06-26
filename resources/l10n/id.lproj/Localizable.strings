@@ -3,7 +3,7 @@
 "4-finger Horizontal Swipe" = "Gesek Horizontal 4 Jari";
 "4-finger Vertical Swipe" = "Gesek Vertikal 4 Jari";
 "A debug profile (versions, settings, hardware) is attached to help diagnose the issue." = "Profil debug (versi, pengaturan, perangkat keras) dilampirkan untuk membantu mendiagnosis masalah.";
-"A new version of AltTab is available" = "Versi baru AltTab tersedia";
+"A new version of CmdTab is available" = "Versi baru CmdTab tersedia";
 "About %@" = "Tentang %@";
 "Accessibility" = "Aksesibilitas";
 "Active app" = "Aplikasi aktif";
@@ -19,9 +19,9 @@
 "All Spaces" = "Semua Ruang";
 "Allowed" = "Diizinkan";
 "Alphabetical Order" = "Urutan Abjad";
-"AltTab crashed last time you used it. Sending a crash report will help get the issue fixed" = "AltTab mengalami kerusakan saat terakhir kali Anda menggunakannya. Mengirim laporan kerusakan akan membantu memperbaiki masalah";
-"AltTab needs some permissions" = "AltTab memerlukan beberapa izin";
-"AltTab will show if the window is currently minimized or fullscreen with a status icon." = "AltTab akan menampilkan ikon status jika jendela saat ini diminimalkan atau dalam layar penuh.";
+"CmdTab crashed last time you used it. Sending a crash report will help get the issue fixed" = "CmdTab mengalami kerusakan saat terakhir kali Anda menggunakannya. Mengirim laporan kerusakan akan membantu memperbaiki masalah";
+"CmdTab needs some permissions" = "CmdTab memerlukan beberapa izin";
+"CmdTab will show if the window is currently minimized or fullscreen with a status icon." = "CmdTab akan menampilkan ikon status jika jendela saat ini diminimalkan atau dalam layar penuh.";
 "Always" = "Selalu";
 "Always send crash reports" = "Selalu kirim laporan kerusakan";
 "and press" = "lalu tekan";
@@ -81,7 +81,7 @@
 "Go back" = "Kembali";
 "Group apps" = "Kelompokkan aplikasi";
 "Group tabs" = "Kelompokkan tab";
-"Help improve AltTab" = "Bantu tingkatkan AltTab";
+"Help improve CmdTab" = "Bantu tingkatkan CmdTab";
 "Hide" = "Sembunyikan";
 "Hide colored circles on mouse hover" = "Sembunyikan lingkaran berwarna saat kursor diarahkan";
 "Hide Space number labels" = "Sembunyikan label nomor Ruang";
@@ -99,7 +99,7 @@
 "Later" = "Nanti";
 "Light" = "Terang";
 "Lock search" = "Kunci pencarian";
-"macOS reserves ⌘⌥⎋, ⌘⌥⇧⎋, and ⌘⌥⇧⌃⎋ for Force Quit and they cannot be unbound. AltTab cannot use them.\n\nYour change would assign one of these to: %@." = "macOS mencadangkan ⌘⌥⎋, ⌘⌥⇧⎋, dan ⌘⌥⇧⌃⎋ untuk Paksa Keluar dan tidak dapat dilepaskan. AltTab tidak dapat menggunakannya.\n\nPerubahan Anda akan menetapkan salah satunya ke: %@.";
+"macOS reserves ⌘⌥⎋, ⌘⌥⇧⎋, and ⌘⌥⇧⌃⎋ for Force Quit and they cannot be unbound. CmdTab cannot use them.\n\nYour change would assign one of these to: %@." = "macOS mencadangkan ⌘⌥⎋, ⌘⌥⇧⎋, dan ⌘⌥⇧⌃⎋ untuk Paksa Keluar dan tidak dapat dilepaskan. CmdTab tidak dapat menggunakannya.\n\nPerubahan Anda akan menetapkan salah satunya ke: %@.";
 "Medium" = "Sedang";
 "Menubar icon" = "Ikon bilah menu";
 "Middle" = "Tengah";
@@ -121,7 +121,7 @@
 "Order windows by" = "Urutkan jendela berdasarkan";
 "Ordering & Grouping" = "Pengurutan & Pengelompokan";
 "Overridden in Shortcut:" = "Diganti dalam Pintasan:";
-"Please drag AltTab into the Applications folder manually." = "Seret AltTab ke folder Aplikasi secara manual.";
+"Please drag CmdTab into the Applications folder manually." = "Seret CmdTab ke folder Aplikasi secara manual.";
 "Please fill in the form" = "Isi formulir";
 "Quit %@" = "Keluar dari %@";
 "Quit app" = "Keluar dari aplikasi";
@@ -135,7 +135,7 @@
 "Restart Now" = "Mulai Ulang Sekarang";
 "Screen including menu bar" = "Layar termasuk bilah menu";
 "Screen including mouse" = "Layar termasuk tetikus";
-"Screen showing AltTab" = "Layar yang menampilkan AltTab";
+"Screen showing CmdTab" = "Layar yang menampilkan CmdTab";
 "Search" = "Cari";
 "Select next window" = "Pilih jendela berikutnya";
 "Select previous window" = "Pilih jendela sebelumnya";

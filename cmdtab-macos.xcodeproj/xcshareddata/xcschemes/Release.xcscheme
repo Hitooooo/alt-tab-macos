@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D04BA5E73DAF232ADE11C97A"
-               BuildableName = "AltTab.app"
-               BlueprintName = "alt-tab-macos"
-               ReferencedContainer = "container:alt-tab-macos.xcodeproj">
+               BuildableName = "CmdTab.app"
+               BlueprintName = "cmdtab-macos"
+               ReferencedContainer = "container:cmdtab-macos.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -46,9 +46,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D04BA5E73DAF232ADE11C97A"
-            BuildableName = "AltTab.app"
-            BlueprintName = "alt-tab-macos"
-            ReferencedContainer = "container:alt-tab-macos.xcodeproj">
+            BuildableName = "CmdTab.app"
+            BlueprintName = "cmdtab-macos"
+            ReferencedContainer = "container:cmdtab-macos.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <LocationScenarioReference

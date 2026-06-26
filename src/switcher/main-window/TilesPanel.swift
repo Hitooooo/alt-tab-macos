@@ -18,7 +18,7 @@ class TilesPanel: NSPanel {
         backgroundColor = .clear
         TilesView.initialize()
         contentView! = TilesView.contentView
-        // triggering AltTab before or during Space transition animation brings the window on the Space post-transition
+        // triggering CmdTab before or during Space transition animation brings the window on the Space post-transition
         collectionBehavior = .canJoinAllSpaces
         // 2nd highest level possible; this allows the app to go on top of context menus
         // highest level is .screenSaver but makes drag and drop on top the main window impossible
@@ -152,7 +152,7 @@ extension TilesPanel: NSWindowDelegate {
 
     func windowDidBecomeKey(_ notification: Notification) {
         // we toggle the mainMenu off when showing the main window
-        // this avoids command+q from quitting AltTab itself, or command+p from printing
+        // this avoids command+q from quitting CmdTab itself, or command+p from printing
         DispatchQueue.main.async {
             MainMenu.toggle(false)
             if TilesView.isSearchEditing {

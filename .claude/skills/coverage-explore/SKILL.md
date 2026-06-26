@@ -28,7 +28,7 @@ There is intentionally **nothing else**: no lcov, no HTML, no committed `.xcresu
    ```sh
    rm -rf /tmp/altcov.xcresult
    set -o pipefail && xcodebuild test \
-     -project alt-tab-macos.xcodeproj -scheme Test -configuration Release \
+     -project cmdtab-macos.xcodeproj -scheme Test -configuration Release \
      -enableCodeCoverage YES -resultBundlePath /tmp/altcov.xcresult | scripts/xcbeautify
    ```
    If the build is red, stop and report — coverage on a failing suite is meaningless.

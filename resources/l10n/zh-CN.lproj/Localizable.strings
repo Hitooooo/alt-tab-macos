@@ -3,7 +3,7 @@
 "4-finger Horizontal Swipe" = "四指水平滑动";
 "4-finger Vertical Swipe" = "四指垂直滑动";
 "A debug profile (versions, settings, hardware) is attached to help diagnose the issue." = "已附上调试信息（版本、设置、硬件）以协助诊断问题。";
-"A new version of AltTab is available" = "AltTab 有新版本可用";
+"A new version of CmdTab is available" = "CmdTab 有新版本可用";
 "About %@" = "关于 %@";
 "Accessibility" = "辅助功能";
 "Active app" = "活跃应用";
@@ -19,9 +19,9 @@
 "All Spaces" = "所有桌面";
 "Allowed" = "允许";
 "Alphabetical Order" = "按字母顺序";
-"AltTab crashed last time you used it. Sending a crash report will help get the issue fixed" = "AltTab 在您上次使用时崩溃了。发送崩溃报告有助于修复问题";
-"AltTab needs some permissions" = "AltTab 需要一些权限";
-"AltTab will show if the window is currently minimized or fullscreen with a status icon." = "AltTab 将通过状态图标显示窗口当前是否已最小化或全屏。";
+"CmdTab crashed last time you used it. Sending a crash report will help get the issue fixed" = "CmdTab 在您上次使用时崩溃了。发送崩溃报告有助于修复问题";
+"CmdTab needs some permissions" = "CmdTab 需要一些权限";
+"CmdTab will show if the window is currently minimized or fullscreen with a status icon." = "CmdTab 将通过状态图标显示窗口当前是否已最小化或全屏。";
 "Always" = "始终";
 "Always send crash reports" = "始终发送崩溃报告";
 "and press" = "然后按";
@@ -81,7 +81,7 @@
 "Go back" = "返回";
 "Group apps" = "应用分组";
 "Group tabs" = "标签分组";
-"Help improve AltTab" = "帮助改进 AltTab";
+"Help improve CmdTab" = "帮助改进 CmdTab";
 "Hide" = "隐藏";
 "Hide colored circles on mouse hover" = "鼠标悬停时隐藏彩色圆圈";
 "Hide Space number labels" = "隐藏桌面编号标签";
@@ -99,7 +99,7 @@
 "Later" = "稍后";
 "Light" = "浅色";
 "Lock search" = "锁定搜索";
-"macOS reserves ⌘⌥⎋, ⌘⌥⇧⎋, and ⌘⌥⇧⌃⎋ for Force Quit and they cannot be unbound. AltTab cannot use them.\n\nYour change would assign one of these to: %@." = "macOS 将 ⌘⌥⎋、⌘⌥⇧⎋ 和 ⌘⌥⇧⌃⎋ 保留用于强制退出，无法解除绑定。AltTab 无法使用它们。\n\n您的更改会将其中之一分配给：%@。";
+"macOS reserves ⌘⌥⎋, ⌘⌥⇧⎋, and ⌘⌥⇧⌃⎋ for Force Quit and they cannot be unbound. CmdTab cannot use them.\n\nYour change would assign one of these to: %@." = "macOS 将 ⌘⌥⎋、⌘⌥⇧⎋ 和 ⌘⌥⇧⌃⎋ 保留用于强制退出，无法解除绑定。CmdTab 无法使用它们。\n\n您的更改会将其中之一分配给：%@。";
 "Medium" = "中";
 "Menubar icon" = "菜单栏图标";
 "Middle" = "中间";
@@ -121,7 +121,7 @@
 "Order windows by" = "窗口排序方式";
 "Ordering & Grouping" = "排序与分组";
 "Overridden in Shortcut:" = "在快捷键中被覆盖：";
-"Please drag AltTab into the Applications folder manually." = "请手动将 AltTab 拖动到应用程序文件夹。";
+"Please drag CmdTab into the Applications folder manually." = "请手动将 CmdTab 拖动到应用程序文件夹。";
 "Please fill in the form" = "请填写表单";
 "Quit %@" = "退出 %@";
 "Quit app" = "退出应用";
@@ -135,7 +135,7 @@
 "Restart Now" = "立即重启";
 "Screen including menu bar" = "包含菜单栏的屏幕";
 "Screen including mouse" = "包含鼠标的屏幕";
-"Screen showing AltTab" = "显示 AltTab 的屏幕";
+"Screen showing CmdTab" = "显示 CmdTab 的屏幕";
 "Search" = "搜索";
 "Select next window" = "选择下一个窗口";
 "Select previous window" = "选择上一个窗口";

@@ -3,7 +3,7 @@
 "4-finger Horizontal Swipe" = "4 parmakla yatay kaydırma";
 "4-finger Vertical Swipe" = "4 parmakla dikey kaydırma";
 "A debug profile (versions, settings, hardware) is attached to help diagnose the issue." = "Sorunun tanılanmasına yardımcı olmak için bir hata ayıklama profili (sürümler, ayarlar, donanım) eklendi.";
-"A new version of AltTab is available" = "AltTab’ın yeni bir sürümü mevcut";
+"A new version of CmdTab is available" = "CmdTab’ın yeni bir sürümü mevcut";
 "About %@" = "%@ hakkında";
 "Accessibility" = "Erişilebilirlik";
 "Active app" = "Etkin uygulama";
@@ -19,9 +19,9 @@
 "All Spaces" = "Tüm Alanlar";
 "Allowed" = "İzin verildi";
 "Alphabetical Order" = "Alfabetik sıra";
-"AltTab crashed last time you used it. Sending a crash report will help get the issue fixed" = "AltTab en son kullandığınızda çöktü. Bir çökme raporu göndermek sorunun düzeltilmesine yardımcı olacaktır";
-"AltTab needs some permissions" = "AltTab’ın bazı izinlere ihtiyacı var";
-"AltTab will show if the window is currently minimized or fullscreen with a status icon." = "AltTab, pencerenin şu anda küçültülmüş veya tam ekran olduğunu bir durum simgesiyle gösterir.";
+"CmdTab crashed last time you used it. Sending a crash report will help get the issue fixed" = "CmdTab en son kullandığınızda çöktü. Bir çökme raporu göndermek sorunun düzeltilmesine yardımcı olacaktır";
+"CmdTab needs some permissions" = "CmdTab’ın bazı izinlere ihtiyacı var";
+"CmdTab will show if the window is currently minimized or fullscreen with a status icon." = "CmdTab, pencerenin şu anda küçültülmüş veya tam ekran olduğunu bir durum simgesiyle gösterir.";
 "Always" = "Her zaman";
 "Always send crash reports" = "Çökme raporlarını her zaman gönder";
 "and press" = "ve basın";
@@ -81,7 +81,7 @@
 "Go back" = "Geri dön";
 "Group apps" = "Uygulamaları grupla";
 "Group tabs" = "Sekmeleri grupla";
-"Help improve AltTab" = "AltTab’ın geliştirilmesine yardımcı olun";
+"Help improve CmdTab" = "CmdTab’ın geliştirilmesine yardımcı olun";
 "Hide" = "Gizle";
 "Hide colored circles on mouse hover" = "Fare üzerine geldiğinde renkli daireleri gizle";
 "Hide Space number labels" = "Alan numarası etiketlerini gizle";
@@ -99,7 +99,7 @@
 "Later" = "Daha sonra";
 "Light" = "Açık";
 "Lock search" = "Aramayı kilitle";
-"macOS reserves ⌘⌥⎋, ⌘⌥⇧⎋, and ⌘⌥⇧⌃⎋ for Force Quit and they cannot be unbound. AltTab cannot use them.\n\nYour change would assign one of these to: %@." = "macOS, ⌘⌥⎋, ⌘⌥⇧⎋ ve ⌘⌥⇧⌃⎋ tuşlarını Çıkmaya Zorla için ayırmıştır ve bunların bağlantısı kaldırılamaz. AltTab bunları kullanamaz.\n\nYaptığınız değişiklik bunlardan birini şuna atayacaktır: %@.";
+"macOS reserves ⌘⌥⎋, ⌘⌥⇧⎋, and ⌘⌥⇧⌃⎋ for Force Quit and they cannot be unbound. CmdTab cannot use them.\n\nYour change would assign one of these to: %@." = "macOS, ⌘⌥⎋, ⌘⌥⇧⎋ ve ⌘⌥⇧⌃⎋ tuşlarını Çıkmaya Zorla için ayırmıştır ve bunların bağlantısı kaldırılamaz. CmdTab bunları kullanamaz.\n\nYaptığınız değişiklik bunlardan birini şuna atayacaktır: %@.";
 "Medium" = "Orta";
 "Menubar icon" = "Menü çubuğu simgesi";
 "Middle" = "Orta";
@@ -121,7 +121,7 @@
 "Order windows by" = "Pencereleri sıralama ölçütü";
 "Ordering & Grouping" = "Sıralama ve Gruplama";
 "Overridden in Shortcut:" = "Şu Kısayolda geçersiz kılındı:";
-"Please drag AltTab into the Applications folder manually." = "Lütfen AltTab’ı el ile Uygulamalar klasörüne sürükleyin.";
+"Please drag CmdTab into the Applications folder manually." = "Lütfen CmdTab’ı el ile Uygulamalar klasörüne sürükleyin.";
 "Please fill in the form" = "Lütfen formu doldurun";
 "Quit %@" = "%@ uygulamasından çık";
 "Quit app" = "Uygulamadan çık";
@@ -135,7 +135,7 @@
 "Restart Now" = "Şimdi Yeniden Başlat";
 "Screen including menu bar" = "Menü çubuğunu içeren ekran";
 "Screen including mouse" = "Fareyi içeren ekran";
-"Screen showing AltTab" = "AltTab’ı gösteren ekran";
+"Screen showing CmdTab" = "CmdTab’ı gösteren ekran";
 "Search" = "Ara";
 "Select next window" = "Sonraki pencereyi seç";
 "Select previous window" = "Önceki pencereyi seç";

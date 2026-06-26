@@ -3,7 +3,7 @@
 "4-finger Horizontal Swipe" = "Horizontales 4-Finger-Wischen";
 "4-finger Vertical Swipe" = "Vertikales 4-Finger-Wischen";
 "A debug profile (versions, settings, hardware) is attached to help diagnose the issue." = "Ein Debug-Profil (Versionen, Einstellungen, Hardware) ist angehängt, um das Problem zu diagnostizieren.";
-"A new version of AltTab is available" = "Eine neue Version von AltTab ist verfügbar";
+"A new version of CmdTab is available" = "Eine neue Version von CmdTab ist verfügbar";
 "About %@" = "Über %@";
 "Accessibility" = "Bedienungshilfen";
 "Active app" = "Aktive App";
@@ -19,9 +19,9 @@
 "All Spaces" = "Alle Spaces";
 "Allowed" = "Erlaubt";
 "Alphabetical Order" = "Alphabetische Reihenfolge";
-"AltTab crashed last time you used it. Sending a crash report will help get the issue fixed" = "AltTab ist bei der letzten Verwendung abgestürzt. Das Senden eines Absturzberichts hilft bei der Behebung des Problems";
-"AltTab needs some permissions" = "AltTab benötigt einige Berechtigungen";
-"AltTab will show if the window is currently minimized or fullscreen with a status icon." = "AltTab zeigt mit einem Statussymbol an, ob das Fenster derzeit minimiert oder im Vollbild ist.";
+"CmdTab crashed last time you used it. Sending a crash report will help get the issue fixed" = "CmdTab ist bei der letzten Verwendung abgestürzt. Das Senden eines Absturzberichts hilft bei der Behebung des Problems";
+"CmdTab needs some permissions" = "CmdTab benötigt einige Berechtigungen";
+"CmdTab will show if the window is currently minimized or fullscreen with a status icon." = "CmdTab zeigt mit einem Statussymbol an, ob das Fenster derzeit minimiert oder im Vollbild ist.";
 "Always" = "Immer";
 "Always send crash reports" = "Absturzberichte immer senden";
 "and press" = "und drücken";
@@ -81,7 +81,7 @@
 "Go back" = "Zurück";
 "Group apps" = "Apps gruppieren";
 "Group tabs" = "Tabs gruppieren";
-"Help improve AltTab" = "Helfen Sie, AltTab zu verbessern";
+"Help improve CmdTab" = "Helfen Sie, CmdTab zu verbessern";
 "Hide" = "Ausblenden";
 "Hide colored circles on mouse hover" = "Farbige Kreise beim Überfahren mit der Maus ausblenden";
 "Hide Space number labels" = "Space-Nummern ausblenden";
@@ -99,7 +99,7 @@
 "Later" = "Später";
 "Light" = "Hell";
 "Lock search" = "Suche sperren";
-"macOS reserves ⌘⌥⎋, ⌘⌥⇧⎋, and ⌘⌥⇧⌃⎋ for Force Quit and they cannot be unbound. AltTab cannot use them.\n\nYour change would assign one of these to: %@." = "macOS reserviert ⌘⌥⎋, ⌘⌥⇧⎋ und ⌘⌥⇧⌃⎋ für „Sofort beenden“ und sie können nicht freigegeben werden. AltTab kann sie nicht verwenden.\n\nIhre Änderung würde eines davon zuweisen an: %@.";
+"macOS reserves ⌘⌥⎋, ⌘⌥⇧⎋, and ⌘⌥⇧⌃⎋ for Force Quit and they cannot be unbound. CmdTab cannot use them.\n\nYour change would assign one of these to: %@." = "macOS reserviert ⌘⌥⎋, ⌘⌥⇧⎋ und ⌘⌥⇧⌃⎋ für „Sofort beenden“ und sie können nicht freigegeben werden. CmdTab kann sie nicht verwenden.\n\nIhre Änderung würde eines davon zuweisen an: %@.";
 "Medium" = "Mittel";
 "Menubar icon" = "Menüleistensymbol";
 "Middle" = "Mitte";
@@ -121,7 +121,7 @@
 "Order windows by" = "Fenster sortieren nach";
 "Ordering & Grouping" = "Sortierung & Gruppierung";
 "Overridden in Shortcut:" = "Überschrieben in Tastenkürzel:";
-"Please drag AltTab into the Applications folder manually." = "Bitte ziehen Sie AltTab manuell in den Programme-Ordner.";
+"Please drag CmdTab into the Applications folder manually." = "Bitte ziehen Sie CmdTab manuell in den Programme-Ordner.";
 "Please fill in the form" = "Bitte füllen Sie das Formular aus";
 "Quit %@" = "%@ beenden";
 "Quit app" = "App beenden";
@@ -135,7 +135,7 @@
 "Restart Now" = "Jetzt neu starten";
 "Screen including menu bar" = "Bildschirm mit Menüleiste";
 "Screen including mouse" = "Bildschirm mit Mauszeiger";
-"Screen showing AltTab" = "Bildschirm, der AltTab anzeigt";
+"Screen showing CmdTab" = "Bildschirm, der CmdTab anzeigt";
 "Search" = "Suche";
 "Select next window" = "Nächstes Fenster auswählen";
 "Select previous window" = "Vorheriges Fenster auswählen";

@@ -3,7 +3,7 @@
 "4-finger Horizontal Swipe" = "4-finger Horizontal Swipe";
 "4-finger Vertical Swipe" = "4-finger Vertical Swipe";
 "A debug profile (versions, settings, hardware) is attached to help diagnose the issue." = "A debug profile (versions, settings, hardware) is attached to help diagnose the issue.";
-"A new version of AltTab is available" = "A new version of AltTab is available";
+"A new version of CmdTab is available" = "A new version of CmdTab is available";
 "About %@" = "About %@";
 "Accessibility" = "Accessibility";
 "Active app" = "Active app";
@@ -19,9 +19,9 @@
 "All Spaces" = "All Spaces";
 "Allowed" = "Allowed";
 "Alphabetical Order" = "Alphabetical Order";
-"AltTab crashed last time you used it. Sending a crash report will help get the issue fixed" = "AltTab crashed last time you used it. Sending a crash report will help get the issue fixed";
-"AltTab needs some permissions" = "AltTab needs some permissions";
-"AltTab will show if the window is currently minimized or fullscreen with a status icon." = "AltTab will show if the window is currently minimized or fullscreen with a status icon.";
+"CmdTab crashed last time you used it. Sending a crash report will help get the issue fixed" = "CmdTab crashed last time you used it. Sending a crash report will help get the issue fixed";
+"CmdTab needs some permissions" = "CmdTab needs some permissions";
+"CmdTab will show if the window is currently minimized or fullscreen with a status icon." = "CmdTab will show if the window is currently minimized or fullscreen with a status icon.";
 "Always" = "Always";
 "Always send crash reports" = "Always send crash reports";
 "and press" = "and press";
@@ -81,7 +81,7 @@
 "Go back" = "Go back";
 "Group apps" = "Group apps";
 "Group tabs" = "Group tabs";
-"Help improve AltTab" = "Help improve AltTab";
+"Help improve CmdTab" = "Help improve CmdTab";
 "Hide" = "Hide";
 "Hide colored circles on mouse hover" = "Hide colored circles on mouse hover";
 "Hide Space number labels" = "Hide Space number labels";
@@ -99,7 +99,7 @@
 "Later" = "Later";
 "Light" = "Light";
 "Lock search" = "Lock search";
-"macOS reserves ⌘⌥⎋, ⌘⌥⇧⎋, and ⌘⌥⇧⌃⎋ for Force Quit and they cannot be unbound. AltTab cannot use them.\n\nYour change would assign one of these to: %@." = "macOS reserves ⌘⌥⎋, ⌘⌥⇧⎋, and ⌘⌥⇧⌃⎋ for Force Quit and they cannot be unbound. AltTab cannot use them.\n\nYour change would assign one of these to: %@.";
+"macOS reserves ⌘⌥⎋, ⌘⌥⇧⎋, and ⌘⌥⇧⌃⎋ for Force Quit and they cannot be unbound. CmdTab cannot use them.\n\nYour change would assign one of these to: %@." = "macOS reserves ⌘⌥⎋, ⌘⌥⇧⎋, and ⌘⌥⇧⌃⎋ for Force Quit and they cannot be unbound. CmdTab cannot use them.\n\nYour change would assign one of these to: %@.";
 "Medium" = "Medium";
 "Menubar icon" = "Menubar icon";
 "Middle" = "Middle";
@@ -121,7 +121,7 @@
 "Order windows by" = "Order windows by";
 "Ordering & Grouping" = "Ordering & Grouping";
 "Overridden in Shortcut:" = "Overridden in Shortcut:";
-"Please drag AltTab into the Applications folder manually." = "Please drag AltTab into the Applications folder manually.";
+"Please drag CmdTab into the Applications folder manually." = "Please drag CmdTab into the Applications folder manually.";
 "Please fill in the form" = "Please fill in the form";
 "Quit %@" = "Quit %@";
 "Quit app" = "Quit app";
@@ -135,7 +135,7 @@
 "Restart Now" = "Restart Now";
 "Screen including menu bar" = "Screen including menu bar";
 "Screen including mouse" = "Screen including mouse";
-"Screen showing AltTab" = "Screen showing AltTab";
+"Screen showing CmdTab" = "Screen showing CmdTab";
 "Search" = "Search";
 "Select next window" = "Select next window";
 "Select previous window" = "Select previous window";

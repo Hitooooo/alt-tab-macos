@@ -1,2 +1,2 @@
-#import "AppCenterApplication.h"
+#import "CmdTabApplication.h"
 #import "ObjCExceptionCatcher.h"

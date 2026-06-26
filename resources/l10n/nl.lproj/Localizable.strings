@@ -3,7 +3,7 @@
 "4-finger Horizontal Swipe" = "Horizontale veegbeweging met 4 vingers";
 "4-finger Vertical Swipe" = "Verticale veegbeweging met 4 vingers";
 "A debug profile (versions, settings, hardware) is attached to help diagnose the issue." = "Een debugprofiel (versies, instellingen, hardware) is bijgevoegd om het probleem te diagnosticeren.";
-"A new version of AltTab is available" = "Er is een nieuwe versie van AltTab beschikbaar";
+"A new version of CmdTab is available" = "Er is een nieuwe versie van CmdTab beschikbaar";
 "About %@" = "Over %@";
 "Accessibility" = "Toegankelijkheid";
 "Active app" = "Actieve app";
@@ -19,9 +19,9 @@
 "All Spaces" = "Alle Spaces";
 "Allowed" = "Toegestaan";
 "Alphabetical Order" = "Alfabetische volgorde";
-"AltTab crashed last time you used it. Sending a crash report will help get the issue fixed" = "AltTab is de vorige keer gecrasht. Door een crashrapport te versturen help je het probleem op te lossen";
-"AltTab needs some permissions" = "AltTab heeft enkele rechten nodig";
-"AltTab will show if the window is currently minimized or fullscreen with a status icon." = "AltTab toont met een statussymbool of het venster momenteel geminimaliseerd of in volledig scherm is.";
+"CmdTab crashed last time you used it. Sending a crash report will help get the issue fixed" = "CmdTab is de vorige keer gecrasht. Door een crashrapport te versturen help je het probleem op te lossen";
+"CmdTab needs some permissions" = "CmdTab heeft enkele rechten nodig";
+"CmdTab will show if the window is currently minimized or fullscreen with a status icon." = "CmdTab toont met een statussymbool of het venster momenteel geminimaliseerd of in volledig scherm is.";
 "Always" = "Altijd";
 "Always send crash reports" = "Altijd crashrapporten versturen";
 "and press" = "en druk op";
@@ -81,7 +81,7 @@
 "Go back" = "Terug";
 "Group apps" = "Apps groeperen";
 "Group tabs" = "Tabbladen groeperen";
-"Help improve AltTab" = "Help AltTab verbeteren";
+"Help improve CmdTab" = "Help CmdTab verbeteren";
 "Hide" = "Verberg";
 "Hide colored circles on mouse hover" = "Gekleurde cirkels verbergen bij aanwijzen met muis";
 "Hide Space number labels" = "Nummerlabels van Spaces verbergen";
@@ -99,7 +99,7 @@
 "Later" = "Later";
 "Light" = "Licht";
 "Lock search" = "Zoekopdracht vergrendelen";
-"macOS reserves ⌘⌥⎋, ⌘⌥⇧⎋, and ⌘⌥⇧⌃⎋ for Force Quit and they cannot be unbound. AltTab cannot use them.\n\nYour change would assign one of these to: %@." = "macOS reserveert ⌘⌥⎋, ⌘⌥⇧⎋ en ⌘⌥⇧⌃⎋ voor Geforceerd stoppen en deze kunnen niet worden vrijgegeven. AltTab kan ze niet gebruiken.\n\nJe wijziging zou er een toewijzen aan: %@.";
+"macOS reserves ⌘⌥⎋, ⌘⌥⇧⎋, and ⌘⌥⇧⌃⎋ for Force Quit and they cannot be unbound. CmdTab cannot use them.\n\nYour change would assign one of these to: %@." = "macOS reserveert ⌘⌥⎋, ⌘⌥⇧⎋ en ⌘⌥⇧⌃⎋ voor Geforceerd stoppen en deze kunnen niet worden vrijgegeven. CmdTab kan ze niet gebruiken.\n\nJe wijziging zou er een toewijzen aan: %@.";
 "Medium" = "Middelgroot";
 "Menubar icon" = "Menubalksymbool";
 "Middle" = "Midden";
@@ -121,7 +121,7 @@
 "Order windows by" = "Vensters rangschikken op";
 "Ordering & Grouping" = "Volgorde en groepering";
 "Overridden in Shortcut:" = "Overschreven in Sneltoets:";
-"Please drag AltTab into the Applications folder manually." = "Sleep AltTab handmatig naar de map Programma's.";
+"Please drag CmdTab into the Applications folder manually." = "Sleep CmdTab handmatig naar de map Programma's.";
 "Please fill in the form" = "Vul het formulier in";
 "Quit %@" = "%@ stoppen";
 "Quit app" = "App stoppen";
@@ -135,7 +135,7 @@
 "Restart Now" = "Herstart nu";
 "Screen including menu bar" = "Scherm met menubalk";
 "Screen including mouse" = "Scherm met muis";
-"Screen showing AltTab" = "Scherm dat AltTab toont";
+"Screen showing CmdTab" = "Scherm dat CmdTab toont";
 "Search" = "Zoeken";
 "Select next window" = "Selecteer volgend venster";
 "Select previous window" = "Selecteer vorig venster";

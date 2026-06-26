@@ -1,19 +1,17 @@
 import Cocoa
 import Darwin
 import ShortcutRecorder
-import AppCenterCrashes
-import Sparkle
 
-class App: AppCenterApplication {
+class App: CmdTabApplication {
     /// periphery:ignore
     static let activity = ProcessInfo.processInfo.beginActivity(options: .userInitiatedAllowingIdleSystemSleep,
         reason: "Prevent App Nap to preserve responsiveness")
-    static let bundleIdentifier = Bundle.main.bundleIdentifier ?? "com.lwouis.alt-tab-macos"
+    static let bundleIdentifier = Bundle.main.bundleIdentifier ?? "com.hitomeng.cmdtab"
     static let bundleURL = Bundle.main.bundleURL
-    static let name = bundleInfo("CFBundleName", "AltTab")
+    static let name = bundleInfo("CFBundleName", "CmdTab")
     static let version = bundleInfo("CFBundleVersion", "0")
     static let licence = bundleInfo("NSHumanReadableCopyright", "GPL-3.0 licence")
-    static let repository = "https://github.com/lwouis/alt-tab-macos"
+    static let repository = "https://github.com/Hitooooo/cmdtab-macos"
     static let appIconReps = CGImage.allNamed("app.icns")
 
     private static func bundleInfo(_ key: String, _ fallback: String) -> String {
@@ -30,11 +28,6 @@ class App: AppCenterApplication {
     static var supportProjectAction: Selector { #selector(App.supportProject) }
     private static var isVeryFirstSummon = true
     private static var pendingShowSettingsWindow = false
-    // periphery:ignore
-    private static var appCenterDelegate: AppCenterCrash?
-    // periphery:ignore
-    static var sparkleDelegate: SparkleDelegate?
-    static var updaterController: SPUStandardUpdaterController?
     // don't queue multiple delayed rebuildUi() calls
     private static var delayedDisplayScheduled = 0
     private static let switcherUiRefreshThrottler = Throttler(delayInMs: 200)
@@ -55,7 +48,7 @@ class App: AppCenterApplication {
 
     static func restart() {
         // we use -n to open a new instance, to avoid calling applicationShouldHandleReopen
-        // we use Bundle.main.bundlePath in case of multiple AltTab versions on the machine
+        // we use Bundle.main.bundlePath in case of multiple CmdTab versions on the machine
         printStackTrace()
         Process.launchedProcess(launchPath: "/usr/bin/open", arguments: ["-n", Bundle.main.bundlePath])
         App.shared.terminate(nil)
@@ -96,23 +89,18 @@ class App: AppCenterApplication {
         focusSelectedWindow(selectedWindow)
     }
 
-    @objc static func checkForUpdatesNow(_ sender: NSMenuItem) {
-        GeneralTab.checkForUpdatesNow(sender)
-    }
-
     @objc static func checkPermissions(_ sender: NSMenuItem) {
         showPermissionsWindow()
     }
 
     @objc static func supportProject() {
-        NSWorkspace.shared.open(URL(string: Endpoints.supportUrl)!)
+        NSWorkspace.shared.open(URL(string: repository)!)
     }
 
     @objc static func showFeedbackPanel() {
         let wasFresh = FeedbackWindow.shared == nil
         initializeFeedbackWindowIfNeeded()
-        // Fresh init already runs reset(); skip the redundant second call so we don't
-        // double-fire the Sparkle preflight on the first ever open.
+        // Fresh init already runs reset(); skip the redundant second call.
         if !wasFresh { FeedbackWindow.shared?.reset() }
         showSecondaryWindow(FeedbackWindow.shared!)
     }
@@ -359,14 +347,6 @@ class App: AppCenterApplication {
         CursorEvents.observe()
         TrackpadEvents.observe()
         CliEvents.observe()
-        App.sparkleDelegate = SparkleDelegate()
-        App.updaterController = SPUStandardUpdaterController(
-            startingUpdater: false,
-            updaterDelegate: App.sparkleDelegate!,
-            userDriverDelegate: nil)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 30) {
-            App.updaterController?.startUpdater()
-        }
         PreferencesEvents.initialize()
         BenchmarkRunner.startIfNeeded()
         showSettingsWindowOnFirstLaunchIfNeeded()
@@ -381,16 +361,15 @@ class App: AppCenterApplication {
         if QAMenu.graphEnabled { DebugMenu.setEnabled(true) }
         #endif
         UsageStats.prune()
-        Logger.info { "Finished launching AltTab" }
+        Logger.info { "Finished launching CmdTab" }
     }
 }
 
 extension App: NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        App.appCenterDelegate = AppCenterCrash()
         App.shared.disableRelaunchOnLogin()
         Logger.initialize()
-        Logger.info { "Launching AltTab \(App.version)" }
+        Logger.info { "Launching CmdTab \(App.version)" }
         #if DEBUG
         UserDefaults.standard.set(true, forKey: "NSConstraintBasedLayoutVisualizeMutuallyExclusiveConstraints")
         #endif

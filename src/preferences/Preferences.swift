@@ -384,10 +384,10 @@ class CachedUserDefaults {
     }
 
     /// retrieve strings in the globalDomain (e.g. defaults read -g KeyRepeat)
-    /// these may be nil since we they don't have default values from AltTab
+    /// these may be nil since we they don't have default values from CmdTab
     static func globalString(_ key: String) -> String? {
-        if let cached = cache.withLock({ $0[key] }) {
-            return cached as? String
+        if let cached = cached(key, as: String.self) {
+            return cached
         }
         if let string = UserDefaults.standard.string(forKey: key) {
             cache.withLock { $0[key] = string }
@@ -396,17 +396,20 @@ class CachedUserDefaults {
     }
 
     static func string(_ key: String) -> String {
-        if let cachedFinalValue = cache.withLock({ $0[key] }) {
-            return cachedFinalValue as! String
+        if let cachedFinalValue = cached(key, as: String.self) {
+            return cachedFinalValue
         }
-        let finalValue = UserDefaults.standard.string(forKey: key)!
+        let finalValue = stringValue(key) ?? ""
+        if finalValue.isEmpty && stringValue(key) == nil {
+            Logger.error { "Missing string preference for key: \(key)" }
+        }
         cache.withLock { $0[key] = finalValue }
         return finalValue
     }
 
     static func shortcut(_ key: String) -> Shortcut? {
-        if let cachedFinalValue = cache.withLock({ $0[key] }) {
-            return cachedFinalValue as? Shortcut
+        if let cachedFinalValue = cachedOptional(key, as: Shortcut.self) {
+            return cachedFinalValue
         }
         guard let objectValue = UserDefaults.standard.object(forKey: key) else {
             cache.withLock { $0[key] = NSNull() }
@@ -448,20 +451,61 @@ class CachedUserDefaults {
     }
 
     private static func getThenConvertOrReset<T>(_ key: String, _ getterFn: (String) -> T?) -> T {
-        if let cachedFinalValue = cache.withLock({ $0[key] }) {
-            return cachedFinalValue as! T
+        if let cachedFinalValue = cached(key, as: T.self) {
+            return cachedFinalValue
         }
-        let stringValue = UserDefaults.standard.string(forKey: key)!
+        let stringValue = stringValue(key) ?? ""
         if let finalValue = getterFn(stringValue) {
             cache.withLock { $0[key] = finalValue }
             return finalValue
         }
         // value couldn't be read properly; we remove it and work with the default
         UserDefaults.standard.removeObject(forKey: key)
-        let defaultStringValue = UserDefaults.standard.string(forKey: key)!
-        let defaultFinalValue = getterFn(defaultStringValue)!
+        let defaultStringValue = defaultStringValue(key) ?? ""
+        guard let defaultFinalValue = getterFn(defaultStringValue) else {
+            Logger.error { "Missing or invalid default preference for key: \(key)" }
+            return fallbackValue(getterFn)
+        }
         cache.withLock { $0[key] = defaultFinalValue }
         return defaultFinalValue
+    }
+
+    private static func cached<T>(_ key: String, as type: T.Type) -> T? {
+        if let cached = cache.withLock({ $0[key] as? T }) { return cached }
+        removeFromCache(key)
+        return nil
+    }
+
+    private static func cachedOptional<T>(_ key: String, as type: T.Type) -> T? {
+        let cachedValue = cache.withLock { $0[key] }
+        if cachedValue is NSNull { return nil }
+        guard let cachedValue else { return nil }
+        guard let typed = cachedValue as? T else {
+            removeFromCache(key)
+            return nil
+        }
+        return typed
+    }
+
+    private static func stringValue(_ key: String) -> String? {
+        if let string = UserDefaults.standard.string(forKey: key) { return string }
+        if let value = UserDefaults.standard.object(forKey: key) as? CustomStringConvertible { return value.description }
+        return defaultStringValue(key)
+    }
+
+    private static func defaultStringValue(_ key: String) -> String? {
+        Preferences.defaultValues[key] as? String
+    }
+
+    private static func fallbackValue<T>(_ getterFn: (String) -> T?) -> T {
+        for candidate in ["0", "1", "false", "true", "[]", ""] {
+            if let value = getterFn(candidate) { return value }
+        }
+        if T.self == String.self { return "" as! T }
+        if T.self == Int.self { return 0 as! T }
+        if T.self == Bool.self { return false as! T }
+        if T.self == Double.self { return 0.0 as! T }
+        fatalError("No fallback preference value for \(T.self)")
     }
 
     private static func jsonDecode<T>(_ value: String, _ type: T.Type) -> T? where T: Decodable {

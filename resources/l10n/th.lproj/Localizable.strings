@@ -3,7 +3,7 @@
 "4-finger Horizontal Swipe" = "ปัด 4 นิ้วในแนวนอน";
 "4-finger Vertical Swipe" = "ปัด 4 นิ้วในแนวตั้ง";
 "A debug profile (versions, settings, hardware) is attached to help diagnose the issue." = "แนบโปรไฟล์การแก้ไขข้อบกพร่อง (เวอร์ชัน การตั้งค่า ฮาร์ดแวร์) เพื่อช่วยวินิจฉัยปัญหา";
-"A new version of AltTab is available" = "มี AltTab เวอร์ชันใหม่ให้ใช้งาน";
+"A new version of CmdTab is available" = "มี CmdTab เวอร์ชันใหม่ให้ใช้งาน";
 "About %@" = "เกี่ยวกับ %@";
 "Accessibility" = "การช่วยการเข้าถึง";
 "Active app" = "แอปที่ทำงานอยู่";
@@ -19,9 +19,9 @@
 "All Spaces" = "พื้นที่ทำงานทั้งหมด";
 "Allowed" = "อนุญาต";
 "Alphabetical Order" = "เรียงตามตัวอักษร";
-"AltTab crashed last time you used it. Sending a crash report will help get the issue fixed" = "AltTab ขัดข้องในการใช้งานครั้งล่าสุด การส่งรายงานการขัดข้องจะช่วยแก้ไขปัญหา";
-"AltTab needs some permissions" = "AltTab ต้องการสิทธิ์บางอย่าง";
-"AltTab will show if the window is currently minimized or fullscreen with a status icon." = "AltTab จะแสดงไอคอนสถานะหากหน้าต่างถูกย่อหรืออยู่ในโหมดเต็มหน้าจอ";
+"CmdTab crashed last time you used it. Sending a crash report will help get the issue fixed" = "CmdTab ขัดข้องในการใช้งานครั้งล่าสุด การส่งรายงานการขัดข้องจะช่วยแก้ไขปัญหา";
+"CmdTab needs some permissions" = "CmdTab ต้องการสิทธิ์บางอย่าง";
+"CmdTab will show if the window is currently minimized or fullscreen with a status icon." = "CmdTab จะแสดงไอคอนสถานะหากหน้าต่างถูกย่อหรืออยู่ในโหมดเต็มหน้าจอ";
 "Always" = "เสมอ";
 "Always send crash reports" = "ส่งรายงานการขัดข้องเสมอ";
 "and press" = "แล้วกด";
@@ -81,7 +81,7 @@
 "Go back" = "ย้อนกลับ";
 "Group apps" = "จัดกลุ่มแอป";
 "Group tabs" = "จัดกลุ่มแท็บ";
-"Help improve AltTab" = "ช่วยปรับปรุง AltTab";
+"Help improve CmdTab" = "ช่วยปรับปรุง CmdTab";
 "Hide" = "ซ่อน";
 "Hide colored circles on mouse hover" = "ซ่อนวงกลมสีเมื่อชี้เมาส์";
 "Hide Space number labels" = "ซ่อนป้ายหมายเลขพื้นที่ทำงาน";
@@ -99,7 +99,7 @@
 "Later" = "ภายหลัง";
 "Light" = "สว่าง";
 "Lock search" = "ล็อกการค้นหา";
-"macOS reserves ⌘⌥⎋, ⌘⌥⇧⎋, and ⌘⌥⇧⌃⎋ for Force Quit and they cannot be unbound. AltTab cannot use them.\n\nYour change would assign one of these to: %@." = "macOS สงวน ⌘⌥⎋, ⌘⌥⇧⎋ และ ⌘⌥⇧⌃⎋ ไว้สำหรับการบังคับออก และไม่สามารถยกเลิกการกำหนดได้ AltTab ไม่สามารถใช้ปุ่มเหล่านี้\n\nการเปลี่ยนแปลงของคุณจะกำหนดปุ่มหนึ่งในเหล่านี้ให้กับ: %@";
+"macOS reserves ⌘⌥⎋, ⌘⌥⇧⎋, and ⌘⌥⇧⌃⎋ for Force Quit and they cannot be unbound. CmdTab cannot use them.\n\nYour change would assign one of these to: %@." = "macOS สงวน ⌘⌥⎋, ⌘⌥⇧⎋ และ ⌘⌥⇧⌃⎋ ไว้สำหรับการบังคับออก และไม่สามารถยกเลิกการกำหนดได้ CmdTab ไม่สามารถใช้ปุ่มเหล่านี้\n\nการเปลี่ยนแปลงของคุณจะกำหนดปุ่มหนึ่งในเหล่านี้ให้กับ: %@";
 "Medium" = "ปานกลาง";
 "Menubar icon" = "ไอคอนแถบเมนู";
 "Middle" = "ตรงกลาง";
@@ -121,7 +121,7 @@
 "Order windows by" = "เรียงหน้าต่างตาม";
 "Ordering & Grouping" = "การเรียงและการจัดกลุ่ม";
 "Overridden in Shortcut:" = "ถูกแทนที่ในทางลัด:";
-"Please drag AltTab into the Applications folder manually." = "โปรดลาก AltTab ไปยังโฟลเดอร์ Applications ด้วยตนเอง";
+"Please drag CmdTab into the Applications folder manually." = "โปรดลาก CmdTab ไปยังโฟลเดอร์ Applications ด้วยตนเอง";
 "Please fill in the form" = "โปรดกรอกแบบฟอร์ม";
 "Quit %@" = "ออกจาก %@";
 "Quit app" = "ออกจากแอป";
@@ -135,7 +135,7 @@
 "Restart Now" = "รีสตาร์ททันที";
 "Screen including menu bar" = "หน้าจอที่มีแถบเมนู";
 "Screen including mouse" = "หน้าจอที่มีเมาส์";
-"Screen showing AltTab" = "หน้าจอที่แสดง AltTab";
+"Screen showing CmdTab" = "หน้าจอที่แสดง CmdTab";
 "Search" = "ค้นหา";
 "Select next window" = "เลือกหน้าต่างถัดไป";
 "Select previous window" = "เลือกหน้าต่างก่อนหน้า";

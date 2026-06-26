@@ -3,7 +3,7 @@
 "4-finger Horizontal Swipe" = "تمرير أفقي بأربعة أصابع";
 "4-finger Vertical Swipe" = "تمرير عمودي بأربعة أصابع";
 "A debug profile (versions, settings, hardware) is attached to help diagnose the issue." = "تم إرفاق ملف تصحيح (الإصدارات، الإعدادات، العتاد) للمساعدة في تشخيص المشكلة.";
-"A new version of AltTab is available" = "يتوفر إصدار جديد من AltTab";
+"A new version of CmdTab is available" = "يتوفر إصدار جديد من CmdTab";
 "About %@" = "حول %@";
 "Accessibility" = "إمكانية الوصول";
 "Active app" = "التطبيق النشط";
@@ -19,9 +19,9 @@
 "All Spaces" = "كل المساحات";
 "Allowed" = "مسموح";
 "Alphabetical Order" = "ترتيب أبجدي";
-"AltTab crashed last time you used it. Sending a crash report will help get the issue fixed" = "تعطّل AltTab في آخر مرة استخدمته فيها. إرسال تقرير الأعطال سيساعد في إصلاح المشكلة";
-"AltTab needs some permissions" = "يحتاج AltTab إلى بعض الأذونات";
-"AltTab will show if the window is currently minimized or fullscreen with a status icon." = "سيُظهر AltTab ما إذا كانت النافذة مصغّرة أو بملء الشاشة حاليًا برمز حالة.";
+"CmdTab crashed last time you used it. Sending a crash report will help get the issue fixed" = "تعطّل CmdTab في آخر مرة استخدمته فيها. إرسال تقرير الأعطال سيساعد في إصلاح المشكلة";
+"CmdTab needs some permissions" = "يحتاج CmdTab إلى بعض الأذونات";
+"CmdTab will show if the window is currently minimized or fullscreen with a status icon." = "سيُظهر CmdTab ما إذا كانت النافذة مصغّرة أو بملء الشاشة حاليًا برمز حالة.";
 "Always" = "دائمًا";
 "Always send crash reports" = "إرسال تقارير الأعطال دائمًا";
 "and press" = "ثم اضغط";
@@ -81,7 +81,7 @@
 "Go back" = "العودة";
 "Group apps" = "تجميع التطبيقات";
 "Group tabs" = "تجميع علامات التبويب";
-"Help improve AltTab" = "ساعد في تحسين AltTab";
+"Help improve CmdTab" = "ساعد في تحسين CmdTab";
 "Hide" = "إخفاء";
 "Hide colored circles on mouse hover" = "إخفاء الدوائر الملوّنة عند تمرير الفأرة";
 "Hide Space number labels" = "إخفاء تسميات أرقام المساحات";
@@ -99,7 +99,7 @@
 "Later" = "لاحقًا";
 "Light" = "فاتح";
 "Lock search" = "قفل البحث";
-"macOS reserves ⌘⌥⎋, ⌘⌥⇧⎋, and ⌘⌥⇧⌃⎋ for Force Quit and they cannot be unbound. AltTab cannot use them.\n\nYour change would assign one of these to: %@." = "يحجز macOS ⌘⌥⎋ و⌘⌥⇧⎋ و⌘⌥⇧⌃⎋ لإنهاء بالقوة ولا يمكن إلغاء ربطها. لا يمكن لـ AltTab استخدامها.\n\nسيؤدي تغييرك إلى تعيين أحدها إلى: %@.";
+"macOS reserves ⌘⌥⎋, ⌘⌥⇧⎋, and ⌘⌥⇧⌃⎋ for Force Quit and they cannot be unbound. CmdTab cannot use them.\n\nYour change would assign one of these to: %@." = "يحجز macOS ⌘⌥⎋ و⌘⌥⇧⎋ و⌘⌥⇧⌃⎋ لإنهاء بالقوة ولا يمكن إلغاء ربطها. لا يمكن لـ CmdTab استخدامها.\n\nسيؤدي تغييرك إلى تعيين أحدها إلى: %@.";
 "Medium" = "متوسط";
 "Menubar icon" = "أيقونة شريط القائمة";
 "Middle" = "الوسط";
@@ -121,7 +121,7 @@
 "Order windows by" = "ترتيب النوافذ حسب";
 "Ordering & Grouping" = "الترتيب والتجميع";
 "Overridden in Shortcut:" = "تم تجاوزه في اختصار:";
-"Please drag AltTab into the Applications folder manually." = "يرجى سحب AltTab إلى مجلد التطبيقات يدويًا.";
+"Please drag CmdTab into the Applications folder manually." = "يرجى سحب CmdTab إلى مجلد التطبيقات يدويًا.";
 "Please fill in the form" = "يرجى ملء النموذج";
 "Quit %@" = "إنهاء %@";
 "Quit app" = "إنهاء التطبيق";
@@ -135,7 +135,7 @@
 "Restart Now" = "إعادة التشغيل الآن";
 "Screen including menu bar" = "الشاشة التي تتضمن شريط القائمة";
 "Screen including mouse" = "الشاشة التي تتضمن الفأرة";
-"Screen showing AltTab" = "الشاشة التي تعرض AltTab";
+"Screen showing CmdTab" = "الشاشة التي تعرض CmdTab";
 "Search" = "البحث";
 "Select next window" = "تحديد النافذة التالية";
 "Select previous window" = "تحديد النافذة السابقة";

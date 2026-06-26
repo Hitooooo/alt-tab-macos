@@ -7,9 +7,9 @@ class CliEvents {
            let source = CFMessagePortCreateRunLoopSource(nil, messagePort, 0) {
             CFRunLoopAddSource(BackgroundWork.cliEventsThread.runLoop, source, .commonModes)
         } else {
-            Logger.error { "Can't listen on message port. Is another AltTab already running?" }
+            Logger.error { "Can't listen on message port. Is another CmdTab already running?" }
             // TODO: should we quit or restart here?
-            // It's complex since AltTab can be restarted sometimes,
+            // It's complex since CmdTab can be restarted sometimes,
             // and the new instance may coexist with the old for some duration
             // There is also the case of multiple instances at login
         }
@@ -153,7 +153,7 @@ class CliClient {
             print("Couldn't execute command. Is it correct?")
             exit(1)
         } catch {
-            print("AltTab.app needs to be running for CLI commands to work")
+            print("CmdTab.app needs to be running for CLI commands to work")
             exit(1)
         }
     }

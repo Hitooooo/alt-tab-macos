@@ -3,7 +3,7 @@
 "4-finger Horizontal Swipe" = "Vuốt ngang 4 ngón tay";
 "4-finger Vertical Swipe" = "Vuốt dọc 4 ngón tay";
 "A debug profile (versions, settings, hardware) is attached to help diagnose the issue." = "Hồ sơ gỡ lỗi (phiên bản, cài đặt, phần cứng) được đính kèm để giúp chẩn đoán sự cố.";
-"A new version of AltTab is available" = "Đã có phiên bản mới của AltTab";
+"A new version of CmdTab is available" = "Đã có phiên bản mới của CmdTab";
 "About %@" = "Giới thiệu về %@";
 "Accessibility" = "Trợ năng";
 "Active app" = "Ứng dụng đang hoạt động";
@@ -19,9 +19,9 @@
 "All Spaces" = "Tất cả Không gian";
 "Allowed" = "Cho phép";
 "Alphabetical Order" = "Thứ tự bảng chữ cái";
-"AltTab crashed last time you used it. Sending a crash report will help get the issue fixed" = "AltTab đã gặp sự cố ở lần dùng trước. Gửi báo cáo sự cố sẽ giúp khắc phục vấn đề";
-"AltTab needs some permissions" = "AltTab cần một số quyền";
-"AltTab will show if the window is currently minimized or fullscreen with a status icon." = "AltTab sẽ hiển thị biểu tượng trạng thái nếu cửa sổ đang được thu nhỏ hoặc ở chế độ toàn màn hình.";
+"CmdTab crashed last time you used it. Sending a crash report will help get the issue fixed" = "CmdTab đã gặp sự cố ở lần dùng trước. Gửi báo cáo sự cố sẽ giúp khắc phục vấn đề";
+"CmdTab needs some permissions" = "CmdTab cần một số quyền";
+"CmdTab will show if the window is currently minimized or fullscreen with a status icon." = "CmdTab sẽ hiển thị biểu tượng trạng thái nếu cửa sổ đang được thu nhỏ hoặc ở chế độ toàn màn hình.";
 "Always" = "Luôn luôn";
 "Always send crash reports" = "Luôn gửi báo cáo sự cố";
 "and press" = "và nhấn";
@@ -81,7 +81,7 @@
 "Go back" = "Quay lại";
 "Group apps" = "Nhóm ứng dụng";
 "Group tabs" = "Nhóm tab";
-"Help improve AltTab" = "Giúp cải thiện AltTab";
+"Help improve CmdTab" = "Giúp cải thiện CmdTab";
 "Hide" = "Ẩn";
 "Hide colored circles on mouse hover" = "Ẩn các vòng tròn màu khi di chuột";
 "Hide Space number labels" = "Ẩn nhãn số Không gian";
@@ -99,7 +99,7 @@
 "Later" = "Để sau";
 "Light" = "Sáng";
 "Lock search" = "Khóa tìm kiếm";
-"macOS reserves ⌘⌥⎋, ⌘⌥⇧⎋, and ⌘⌥⇧⌃⎋ for Force Quit and they cannot be unbound. AltTab cannot use them.\n\nYour change would assign one of these to: %@." = "macOS dành riêng ⌘⌥⎋, ⌘⌥⇧⎋, và ⌘⌥⇧⌃⎋ cho Buộc thoát và không thể gỡ bỏ. AltTab không thể sử dụng chúng.\n\nThay đổi của bạn sẽ gán một trong số đó cho: %@.";
+"macOS reserves ⌘⌥⎋, ⌘⌥⇧⎋, and ⌘⌥⇧⌃⎋ for Force Quit and they cannot be unbound. CmdTab cannot use them.\n\nYour change would assign one of these to: %@." = "macOS dành riêng ⌘⌥⎋, ⌘⌥⇧⎋, và ⌘⌥⇧⌃⎋ cho Buộc thoát và không thể gỡ bỏ. CmdTab không thể sử dụng chúng.\n\nThay đổi của bạn sẽ gán một trong số đó cho: %@.";
 "Medium" = "Trung bình";
 "Menubar icon" = "Biểu tượng thanh menu";
 "Middle" = "Giữa";
@@ -121,7 +121,7 @@
 "Order windows by" = "Sắp xếp cửa sổ theo";
 "Ordering & Grouping" = "Sắp xếp & Nhóm";
 "Overridden in Shortcut:" = "Bị ghi đè trong Phím tắt:";
-"Please drag AltTab into the Applications folder manually." = "Vui lòng kéo AltTab vào thư mục Ứng dụng theo cách thủ công.";
+"Please drag CmdTab into the Applications folder manually." = "Vui lòng kéo CmdTab vào thư mục Ứng dụng theo cách thủ công.";
 "Please fill in the form" = "Vui lòng điền vào biểu mẫu";
 "Quit %@" = "Thoát %@";
 "Quit app" = "Thoát ứng dụng";
@@ -135,7 +135,7 @@
 "Restart Now" = "Khởi động lại ngay";
 "Screen including menu bar" = "Màn hình có thanh menu";
 "Screen including mouse" = "Màn hình có con trỏ chuột";
-"Screen showing AltTab" = "Màn hình hiển thị AltTab";
+"Screen showing CmdTab" = "Màn hình hiển thị CmdTab";
 "Search" = "Tìm kiếm";
 "Select next window" = "Chọn cửa sổ kế tiếp";
 "Select previous window" = "Chọn cửa sổ trước đó";

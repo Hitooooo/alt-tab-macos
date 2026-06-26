@@ -65,8 +65,8 @@ final class NativeHotkeyResolverTests: XCTestCase {
 
     // MARK: - D. Default option config — no native switcher overlap
 
-    /// AltTab's default trigger (⌥⇥ / hold ⌥) doesn't overlap any native command-tab hotkey, so
-    /// every native hotkey stays enabled — AltTab coexists with the system's native switcher.
+    /// CmdTab's default trigger (⌥⇥ / hold ⌥) doesn't overlap any native command-tab hotkey, so
+    /// every native hotkey stays enabled — CmdTab coexists with the system's native switcher.
     func testOptionTabDoesNotOverrideNativeSwitchers() {
         let result = NativeHotkeyResolver.resolve(
             shortcuts: [snap(optionKey, kVK_Tab)],

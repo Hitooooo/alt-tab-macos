@@ -3,7 +3,7 @@ import Foundation
 /// Detects whether a window is a "phantom": present in macOS APIs (AX hands it back with a valid
 /// `CGWindowID`) but not something the app actually means to show the user — alpha=0 Outlook reminders,
 /// `orderOut:` / `show:false` Electron windows, WeChat/Teams hidden windows, etc. The pixel content may
-/// be absent, black, or anything; what matters is that AltTab shouldn't offer it as a switch target. See
+/// be absent, black, or anything; what matters is that CmdTab shouldn't offer it as a switch target. See
 /// `src/experimentations/PhantomWindowDetection.swift` for the full investigation.
 ///
 /// Pure kernel over the test-constructible `WindowState` + `ApplicationState` records (no SkyLight, no

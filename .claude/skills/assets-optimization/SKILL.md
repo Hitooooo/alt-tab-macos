@@ -7,7 +7,7 @@ description: Audit and optimize every image asset shipped with AltTab. Apply the
 
 ## Goal
 
-Every byte that ships in `AltTab.app/Contents/Resources/` should justify itself. Vectors stay vector, rasters compress to HEIC, and neither carries metadata, color profiles, accessibility tags, or producer signatures that AppKit doesn't use.
+Every byte that ships in `CmdTab.app/Contents/Resources/` should justify itself. Vectors stay vector, rasters compress to HEIC, and neither carries metadata, color profiles, accessibility tags, or producer signatures that AppKit doesn't use.
 
 This skill applies a known-good pipeline to each asset class. It is opinionated about the right format and the right encoder for each kind of content.
 
@@ -155,7 +155,7 @@ If q50 isn't acceptable, the next quality steps are q60 and q65 — beyond that,
 
 ## Step 5: pbxproj registration
 
-Whenever you change the file extension of a resource (.jpg → .heic, .png → .pdf, etc.), update [alt-tab-macos.xcodeproj/project.pbxproj](alt-tab-macos.xcodeproj/project.pbxproj). The places that need patching:
+Whenever you change the file extension of a resource (.jpg → .heic, .png → .pdf, etc.), update [cmdtab-macos.xcodeproj/project.pbxproj](cmdtab-macos.xcodeproj/project.pbxproj). The places that need patching:
 
 1. **PBXBuildFile section** — comment + the comment inside `fileRef = ... /* name.ext */`.
 2. **PBXFileReference section** — comment, `lastKnownFileType` (e.g. `image.pdf`, `image.heic`, `image.png`), and `path = "name.ext"`.

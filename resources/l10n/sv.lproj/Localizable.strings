@@ -3,7 +3,7 @@
 "4-finger Horizontal Swipe" = "Horisontellt svep med 4 fingrar";
 "4-finger Vertical Swipe" = "Vertikalt svep med 4 fingrar";
 "A debug profile (versions, settings, hardware) is attached to help diagnose the issue." = "En felsökningsprofil (versioner, inställningar, hårdvara) bifogas för att hjälpa till att diagnostisera problemet.";
-"A new version of AltTab is available" = "En ny version av AltTab är tillgänglig";
+"A new version of CmdTab is available" = "En ny version av CmdTab är tillgänglig";
 "About %@" = "Om %@";
 "Accessibility" = "Hjälpmedel";
 "Active app" = "Aktiv app";
@@ -19,9 +19,9 @@
 "All Spaces" = "Alla skrivbord";
 "Allowed" = "Tillåten";
 "Alphabetical Order" = "Alfabetisk ordning";
-"AltTab crashed last time you used it. Sending a crash report will help get the issue fixed" = "AltTab kraschade förra gången du använde den. Att skicka en kraschrapport hjälper till att åtgärda problemet";
-"AltTab needs some permissions" = "AltTab behöver vissa behörigheter";
-"AltTab will show if the window is currently minimized or fullscreen with a status icon." = "AltTab visar med en statusikon om fönstret är minimerat eller i helskärm.";
+"CmdTab crashed last time you used it. Sending a crash report will help get the issue fixed" = "CmdTab kraschade förra gången du använde den. Att skicka en kraschrapport hjälper till att åtgärda problemet";
+"CmdTab needs some permissions" = "CmdTab behöver vissa behörigheter";
+"CmdTab will show if the window is currently minimized or fullscreen with a status icon." = "CmdTab visar med en statusikon om fönstret är minimerat eller i helskärm.";
 "Always" = "Alltid";
 "Always send crash reports" = "Skicka alltid kraschrapporter";
 "and press" = "och tryck";
@@ -81,7 +81,7 @@
 "Go back" = "Tillbaka";
 "Group apps" = "Gruppera appar";
 "Group tabs" = "Gruppera flikar";
-"Help improve AltTab" = "Hjälp till att förbättra AltTab";
+"Help improve CmdTab" = "Hjälp till att förbättra CmdTab";
 "Hide" = "Dölj";
 "Hide colored circles on mouse hover" = "Dölj färgade cirklar när muspekaren är över";
 "Hide Space number labels" = "Dölj nummeretiketter för skrivbord";
@@ -99,7 +99,7 @@
 "Later" = "Senare";
 "Light" = "Ljus";
 "Lock search" = "Lås sökning";
-"macOS reserves ⌘⌥⎋, ⌘⌥⇧⎋, and ⌘⌥⇧⌃⎋ for Force Quit and they cannot be unbound. AltTab cannot use them.\n\nYour change would assign one of these to: %@." = "macOS reserverar ⌘⌥⎋, ⌘⌥⇧⎋ och ⌘⌥⇧⌃⎋ för Tvinga att avsluta och de kan inte frigöras. AltTab kan inte använda dem.\n\nDin ändring skulle tilldela ett av dessa till: %@.";
+"macOS reserves ⌘⌥⎋, ⌘⌥⇧⎋, and ⌘⌥⇧⌃⎋ for Force Quit and they cannot be unbound. CmdTab cannot use them.\n\nYour change would assign one of these to: %@." = "macOS reserverar ⌘⌥⎋, ⌘⌥⇧⎋ och ⌘⌥⇧⌃⎋ för Tvinga att avsluta och de kan inte frigöras. CmdTab kan inte använda dem.\n\nDin ändring skulle tilldela ett av dessa till: %@.";
 "Medium" = "Mellan";
 "Menubar icon" = "Menyradsikon";
 "Middle" = "Mitten";
@@ -121,7 +121,7 @@
 "Order windows by" = "Sortera fönster efter";
 "Ordering & Grouping" = "Sortering och gruppering";
 "Overridden in Shortcut:" = "Åsidosatt i Kortkommando:";
-"Please drag AltTab into the Applications folder manually." = "Dra AltTab till mappen Program manuellt.";
+"Please drag CmdTab into the Applications folder manually." = "Dra CmdTab till mappen Program manuellt.";
 "Please fill in the form" = "Fyll i formuläret";
 "Quit %@" = "Avsluta %@";
 "Quit app" = "Avsluta app";
@@ -135,7 +135,7 @@
 "Restart Now" = "Starta om nu";
 "Screen including menu bar" = "Skärm som innehåller menyraden";
 "Screen including mouse" = "Skärm som innehåller musen";
-"Screen showing AltTab" = "Skärm som visar AltTab";
+"Screen showing CmdTab" = "Skärm som visar CmdTab";
 "Search" = "Sök";
 "Select next window" = "Välj nästa fönster";
 "Select previous window" = "Välj föregående fönster";

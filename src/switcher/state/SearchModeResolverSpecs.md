@@ -35,7 +35,7 @@ the Edit menu, call `App.cycleSelection`).
 - **Key routing precedence** (while editing): IME-composing or an open context menu wins first (never
   steal composing keystrokes) → arrows drive selection → Tab is swallowed → the cancel/lockSearch/focus
   shortcuts pass to the shortcut pipeline → everything else (typed text, **cmd+A/C/V/X**) goes to the
-  `NSSearchField`, which handles select-all/copy/paste/cut natively. AltTab does not intercept those.
+  `NSSearchField`, which handles select-all/copy/paste/cut natively. CmdTab does not intercept those.
 - **Field editability** tracks mode exactly: editable iff `.editing`.
 - **Not modeled here** (stays in `TilesView` as side effects): caret placement, first-responder
   changes, `forceDoNothingOnRelease`, hover clearing, key-repeat-timer stops, the Edit-menu toggle, and

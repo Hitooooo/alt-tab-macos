@@ -12,7 +12,7 @@ class SystemPermissions {
     // characterised in public sources, so we also keep a sparse 60s backstop timer below.
     // Infra requirements: NSDistributedNotificationCenter since 10.15 ignores nil-name
     // observers (we pass a name) and since macOS 15 silently fails for unsigned binaries
-    // (AltTab is Developer ID signed). macOS 13+ has a known bug where `AXIsProcessTrusted`
+    // (CmdTab is Developer ID signed). macOS 13+ has a known bug where `AXIsProcessTrusted`
     // can return stale values right after a toggle; we call `AccessibilityPermission.update()`
     // which re-runs the API rather than caching.
     private static let axRevokeNotificationName = "com.apple.accessibility.api"
@@ -80,7 +80,7 @@ class SystemPermissions {
 
     private static func checkPermissionsPostStartup() {
         if AccessibilityPermission.status == .notGranted {
-            Logger.error { "Accessibility permission revoked while AltTab was running; restarting" }
+            Logger.error { "Accessibility permission revoked while CmdTab was running; restarting" }
             DispatchQueue.main.async { App.restart() }
         }
     }

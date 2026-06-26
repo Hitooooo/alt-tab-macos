@@ -29,7 +29,7 @@ class PermissionsWindow: NSWindow {
     }
 
     private func setupWindow() {
-        title = NSLocalizedString("AltTab needs some permissions", comment: "")
+        title = NSLocalizedString("CmdTab needs some permissions", comment: "")
         titleVisibility = .hidden
         titlebarAppearsTransparent = true
         hidesOnDeactivate = false
@@ -43,7 +43,7 @@ class PermissionsWindow: NSWindow {
         let appIconSize = NSSize(width: 80, height: 80)
         appIcon.updateContents(.cgImage(App.appIcon(for: appIconSize)), appIconSize)
         appIcon.fit(80, 80)
-        let appText = TitleLabel(NSLocalizedString("AltTab needs some permissions", comment: ""))
+        let appText = TitleLabel(NSLocalizedString("CmdTab needs some permissions", comment: ""))
         appText.preferredMaxLayoutWidth = 380
         appText.font = .systemFont(ofSize: 25, weight: .regular)
         let header = NSStackView(views: [appIcon, appText])

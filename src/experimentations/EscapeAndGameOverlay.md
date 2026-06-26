@@ -2,7 +2,7 @@
 
 ## Problem
 
-Reports of the cancel shortcut (`⎋`) being unreliable when AltTab's switcher is open, especially with `⌘`-based hold shortcuts. macOS 26 introduced "Game Overlay", which uses `⌘⎋` system-wide. We needed to know:
+Reports of the cancel shortcut (`⎋`) being unreliable when CmdTab's switcher is open, especially with `⌘`-based hold shortcuts. macOS 26 introduced "Game Overlay", which uses `⌘⎋` system-wide. We needed to know:
 
 1. Which keyboard-listening API actually receives `⎋` (alone or with each modifier combo) on macOS 26.
 2. Whether absorbing the event in our tap suppresses Game Overlay, or whether GO fires anyway.
@@ -25,7 +25,7 @@ Built a debug-only harness that installed seven listeners in parallel, each tagg
 
 Plus a separate dumper that walked `CGSGetSymbolicHotKeyValue(0..<300)` to identify Game Overlay's symbolic hotkey ID by toggling GO on/off and seeing which ID flipped.
 
-Tested on macOS 26.3.1 with multiple combos (`⎋`, `⌥⎋`, `⌘⎋`, `⇧⎋`), with the AltTab switcher open and closed, and with Game Overlay both enabled and disabled. For each `*.default` tap, both pass-through and absorb modes were tested.
+Tested on macOS 26.3.1 with multiple combos (`⎋`, `⌥⎋`, `⌘⎋`, `⇧⎋`), with the CmdTab switcher open and closed, and with Game Overlay both enabled and disabled. For each `*.default` tap, both pass-through and absorb modes were tested.
 
 ## Findings
 
@@ -46,7 +46,7 @@ Only the following fired:
 
 **Did not fire:** `cgAnnotated.head.default`, `nsLocal-altTab` (instrumented inside `KeyboardEvents.addLocalMonitorForKeyDownAndKeyUp` to log before any absorb decision), `nsGlobal`, the experiment's own `nsLocal`.
 
-This places Game Overlay's hook somewhere between the `cgSession` taps and `cgAnnotated`/WindowServer/app delivery. Once GO consumes the event, none of the user-facing event paths see it. AltTab's existing `addLocalMonitorForEvents`-based flow (which is downstream of GO) cannot bind `⌘⎋` no matter what — that's the original bug.
+This places Game Overlay's hook somewhere between the `cgSession` taps and `cgAnnotated`/WindowServer/app delivery. Once GO consumes the event, none of the user-facing event paths see it. CmdTab's existing `addLocalMonitorForEvents`-based flow (which is downstream of GO) cannot bind `⌘⎋` no matter what — that's the original bug.
 
 ### Absorption at `cghid` suppresses everything downstream
 
@@ -60,7 +60,7 @@ All downstream taps (cgSession, cgAnnotated), the local/global NSEvent monitors,
 
 ### Other combos (`⎋`, `⌥⎋`, `⇧⎋`)
 
-For combos GO doesn't intercept (`⎋`, `⌥⎋`, `⇧⎋`), all five CG taps fired in pass-through. AltTab's existing local monitor catches these fine. The `nsLocal` lines in the experiment trace looked absent because *AltTab's* local monitor (registered at app launch, ahead of the experiment's monitor in the chain) absorbs Esc events that match the cancel shortcut and returns `nil`, which short-circuits subsequent monitors. That's expected NSEvent monitor-chain behaviour, not the OS dropping the event.
+For combos GO doesn't intercept (`⎋`, `⌥⎋`, `⇧⎋`), all five CG taps fired in pass-through. CmdTab's existing local monitor catches these fine. The `nsLocal` lines in the experiment trace looked absent because *CmdTab's* local monitor (registered at app launch, ahead of the experiment's monitor in the chain) absorbs Esc events that match the cancel shortcut and returns `nil`, which short-circuits subsequent monitors. That's expected NSEvent monitor-chain behaviour, not the OS dropping the event.
 
 ## Decision
 
@@ -68,11 +68,11 @@ Use a single `cghidEventTap` + `.headInsertEventTap` + `.defaultTap` listening t
 
 This makes binding `⌘⎋` work cleanly with Game Overlay enabled — no warning dialog, no private-API toggle of GO. The Force-Quit chords (`⌘⌥⎋`, `⌘⌥⇧⎋`, `⌘⌥⇧⌃⎋`) remain blocked at the recorder level because the OS hard-reserves them and we cannot intercept them this way.
 
-Why a single tap instead of two: the existing flags-only tap was already permanently installed at app launch on the same background thread (`BackgroundWork.keyboardAndMouseAndTrackpadEventsThread`); piggy-backing keyDown on it costs one extra integer comparison per keystroke and saves a mach port + runloop source. The promotion from `.listenOnly` to `.defaultTap` is required for absorption; both options need only the Accessibility permission AltTab already has, and SecureInput continues to filter `.keyDown` (passwords aren't observed) while leaving `.flagsChanged` visible.
+Why a single tap instead of two: the existing flags-only tap was already permanently installed at app launch on the same background thread (`BackgroundWork.keyboardAndMouseAndTrackpadEventsThread`); piggy-backing keyDown on it costs one extra integer comparison per keystroke and saves a mach port + runloop source. The promotion from `.listenOnly` to `.defaultTap` is required for absorption; both options need only the Accessibility permission CmdTab already has, and SecureInput continues to filter `.keyDown` (passwords aren't observed) while leaving `.flagsChanged` visible.
 
 ## Notes for future investigations
 
-- `cghidEventTap` requires Accessibility permission (which AltTab already has). It does *not* require the separate Input Monitoring permission for the absorption case observed here.
+- `cghidEventTap` requires Accessibility permission (which CmdTab already has). It does *not* require the separate Input Monitoring permission for the absorption case observed here.
 - `NSEvent.addLocalMonitorForEvents` callbacks form a chain in registration order. Returning `nil` from any link stops the rest of the chain. When debugging, log inside the *first* registered handler (or temporarily register your debug monitor before everything else) — a second monitor cannot observe events the first one absorbed.
 - The CG tap callback runs on a background thread (we put it on `BackgroundWork.keyboardAndMouseAndTrackpadEventsThread.runLoop`). The absorb decision must be synchronous; the matcher action itself can be dispatched async to main.
 - One CG tap can listen to multiple event types. Adding `.keyDown` to an existing `.flagsChanged` tap is essentially free — the system fires the same callback with different `CGEventType` values, and we branch in the callback. There's no benefit to maintaining separate taps unless they need different placement (`.headInsertEventTap` vs `.tailAppendEventTap`) or different options (`.defaultTap` vs `.listenOnly`).

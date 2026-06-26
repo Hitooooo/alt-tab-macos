@@ -3,7 +3,7 @@
 "4-finger Horizontal Swipe" = "Горизонтальный свайп четырьмя пальцами";
 "4-finger Vertical Swipe" = "Вертикальный свайп четырьмя пальцами";
 "A debug profile (versions, settings, hardware) is attached to help diagnose the issue." = "К сообщению приложен отладочный профиль (версии, настройки, оборудование) для диагностики проблемы.";
-"A new version of AltTab is available" = "Доступна новая версия AltTab";
+"A new version of CmdTab is available" = "Доступна новая версия CmdTab";
 "About %@" = "О программе %@";
 "Accessibility" = "Универсальный доступ";
 "Active app" = "Активное приложение";
@@ -19,9 +19,9 @@
 "All Spaces" = "Все пространства";
 "Allowed" = "Разрешено";
 "Alphabetical Order" = "По алфавиту";
-"AltTab crashed last time you used it. Sending a crash report will help get the issue fixed" = "В прошлый раз AltTab завершился со сбоем. Отправка отчёта о сбое поможет устранить проблему";
-"AltTab needs some permissions" = "AltTab требуется несколько разрешений";
-"AltTab will show if the window is currently minimized or fullscreen with a status icon." = "AltTab покажет значком статуса, если окно сейчас свёрнуто или в полноэкранном режиме.";
+"CmdTab crashed last time you used it. Sending a crash report will help get the issue fixed" = "В прошлый раз CmdTab завершился со сбоем. Отправка отчёта о сбое поможет устранить проблему";
+"CmdTab needs some permissions" = "CmdTab требуется несколько разрешений";
+"CmdTab will show if the window is currently minimized or fullscreen with a status icon." = "CmdTab покажет значком статуса, если окно сейчас свёрнуто или в полноэкранном режиме.";
 "Always" = "Всегда";
 "Always send crash reports" = "Всегда отправлять отчёты о сбоях";
 "and press" = "и нажмите";
@@ -81,7 +81,7 @@
 "Go back" = "Назад";
 "Group apps" = "Группировать приложения";
 "Group tabs" = "Группировать вкладки";
-"Help improve AltTab" = "Помочь улучшить AltTab";
+"Help improve CmdTab" = "Помочь улучшить CmdTab";
 "Hide" = "Скрыть";
 "Hide colored circles on mouse hover" = "Скрывать цветные кружки при наведении курсора";
 "Hide Space number labels" = "Скрывать номера пространств";
@@ -99,7 +99,7 @@
 "Later" = "Позже";
 "Light" = "Светлая";
 "Lock search" = "Зафиксировать поиск";
-"macOS reserves ⌘⌥⎋, ⌘⌥⇧⎋, and ⌘⌥⇧⌃⎋ for Force Quit and they cannot be unbound. AltTab cannot use them.\n\nYour change would assign one of these to: %@." = "macOS резервирует ⌘⌥⎋, ⌘⌥⇧⎋ и ⌘⌥⇧⌃⎋ для «Завершить принудительно», и их нельзя отвязать. AltTab не может их использовать.\n\nВаше изменение назначит одно из них на: %@.";
+"macOS reserves ⌘⌥⎋, ⌘⌥⇧⎋, and ⌘⌥⇧⌃⎋ for Force Quit and they cannot be unbound. CmdTab cannot use them.\n\nYour change would assign one of these to: %@." = "macOS резервирует ⌘⌥⎋, ⌘⌥⇧⎋ и ⌘⌥⇧⌃⎋ для «Завершить принудительно», и их нельзя отвязать. CmdTab не может их использовать.\n\nВаше изменение назначит одно из них на: %@.";
 "Medium" = "Средний";
 "Menubar icon" = "Значок в строке меню";
 "Middle" = "Середина";
@@ -121,7 +121,7 @@
 "Order windows by" = "Сортировка окон";
 "Ordering & Grouping" = "Сортировка и группировка";
 "Overridden in Shortcut:" = "Переопределено в сочетании клавиш:";
-"Please drag AltTab into the Applications folder manually." = "Перетащите AltTab в папку «Программы» вручную.";
+"Please drag CmdTab into the Applications folder manually." = "Перетащите CmdTab в папку «Программы» вручную.";
 "Please fill in the form" = "Заполните форму";
 "Quit %@" = "Завершить %@";
 "Quit app" = "Завершить приложение";
@@ -135,7 +135,7 @@
 "Restart Now" = "Перезапустить сейчас";
 "Screen including menu bar" = "Экран со строкой меню";
 "Screen including mouse" = "Экран с курсором мыши";
-"Screen showing AltTab" = "Экран с AltTab";
+"Screen showing CmdTab" = "Экран с CmdTab";
 "Search" = "Поиск";
 "Select next window" = "Выбрать следующее окно";
 "Select previous window" = "Выбрать предыдущее окно";

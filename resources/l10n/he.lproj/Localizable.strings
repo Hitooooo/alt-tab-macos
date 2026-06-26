@@ -3,7 +3,7 @@
 "4-finger Horizontal Swipe" = "החלקה אופקית ב-4 אצבעות";
 "4-finger Vertical Swipe" = "החלקה אנכית ב-4 אצבעות";
 "A debug profile (versions, settings, hardware) is attached to help diagnose the issue." = "פרופיל איתור באגים (גרסאות, הגדרות, חומרה) מצורף כדי לסייע באבחון הבעיה.";
-"A new version of AltTab is available" = "גרסה חדשה של AltTab זמינה";
+"A new version of CmdTab is available" = "גרסה חדשה של CmdTab זמינה";
 "About %@" = "אודות %@";
 "Accessibility" = "נגישות";
 "Active app" = "יישום פעיל";
@@ -19,9 +19,9 @@
 "All Spaces" = "כל המרחבים";
 "Allowed" = "מותר";
 "Alphabetical Order" = "סדר אלפביתי";
-"AltTab crashed last time you used it. Sending a crash report will help get the issue fixed" = "AltTab קרס בפעם האחרונה שהשתמשת בו. שליחת דיווח קריסה תסייע לתקן את הבעיה";
-"AltTab needs some permissions" = "AltTab זקוק להרשאות מסוימות";
-"AltTab will show if the window is currently minimized or fullscreen with a status icon." = "AltTab יציג באמצעות סמל מצב אם החלון ממוזער או במסך מלא.";
+"CmdTab crashed last time you used it. Sending a crash report will help get the issue fixed" = "CmdTab קרס בפעם האחרונה שהשתמשת בו. שליחת דיווח קריסה תסייע לתקן את הבעיה";
+"CmdTab needs some permissions" = "CmdTab זקוק להרשאות מסוימות";
+"CmdTab will show if the window is currently minimized or fullscreen with a status icon." = "CmdTab יציג באמצעות סמל מצב אם החלון ממוזער או במסך מלא.";
 "Always" = "תמיד";
 "Always send crash reports" = "שלח תמיד דיווחי קריסה";
 "and press" = "ולחץ על";
@@ -81,7 +81,7 @@
 "Go back" = "חזור";
 "Group apps" = "קבץ יישומים";
 "Group tabs" = "קבץ לשוניות";
-"Help improve AltTab" = "סייע בשיפור AltTab";
+"Help improve CmdTab" = "סייע בשיפור CmdTab";
 "Hide" = "הסתר";
 "Hide colored circles on mouse hover" = "הסתר עיגולים צבעוניים בעת ריחוף עכבר";
 "Hide Space number labels" = "הסתר תוויות מספרי מרחבים";
@@ -99,7 +99,7 @@
 "Later" = "מאוחר יותר";
 "Light" = "בהיר";
 "Lock search" = "נעל חיפוש";
-"macOS reserves ⌘⌥⎋, ⌘⌥⇧⎋, and ⌘⌥⇧⌃⎋ for Force Quit and they cannot be unbound. AltTab cannot use them.\n\nYour change would assign one of these to: %@." = "macOS שומר את ⌘⌥⎋, ⌘⌥⇧⎋ ו-⌘⌥⇧⌃⎋ עבור כפיית יציאה ולא ניתן לבטל את שיוכם. AltTab אינו יכול להשתמש בהם.\n\nהשינוי שלך ישייך אחד מהם ל: %@.";
+"macOS reserves ⌘⌥⎋, ⌘⌥⇧⎋, and ⌘⌥⇧⌃⎋ for Force Quit and they cannot be unbound. CmdTab cannot use them.\n\nYour change would assign one of these to: %@." = "macOS שומר את ⌘⌥⎋, ⌘⌥⇧⎋ ו-⌘⌥⇧⌃⎋ עבור כפיית יציאה ולא ניתן לבטל את שיוכם. CmdTab אינו יכול להשתמש בהם.\n\nהשינוי שלך ישייך אחד מהם ל: %@.";
 "Medium" = "בינוני";
 "Menubar icon" = "סמל שורת התפריטים";
 "Middle" = "אמצע";
@@ -121,7 +121,7 @@
 "Order windows by" = "מיין חלונות לפי";
 "Ordering & Grouping" = "מיון וקיבוץ";
 "Overridden in Shortcut:" = "נדרס בקיצור דרך:";
-"Please drag AltTab into the Applications folder manually." = "גרור את AltTab לתיקיית היישומים באופן ידני.";
+"Please drag CmdTab into the Applications folder manually." = "גרור את CmdTab לתיקיית היישומים באופן ידני.";
 "Please fill in the form" = "מלא את הטופס";
 "Quit %@" = "צא מ-%@";
 "Quit app" = "צא מהיישום";
@@ -135,7 +135,7 @@
 "Restart Now" = "הפעל מחדש כעת";
 "Screen including menu bar" = "מסך הכולל את שורת התפריטים";
 "Screen including mouse" = "מסך הכולל את העכבר";
-"Screen showing AltTab" = "מסך המציג את AltTab";
+"Screen showing CmdTab" = "מסך המציג את CmdTab";
 "Search" = "חיפוש";
 "Select next window" = "בחר בחלון הבא";
 "Select previous window" = "בחר בחלון הקודם";
