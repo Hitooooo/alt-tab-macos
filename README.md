@@ -11,7 +11,7 @@ CmdTab 是一个轻量的 macOS 窗口切换工具，基于 [AltTab](https://git
 
 ## 下载构建
 
-本仓库通过 GitHub Actions 自动生成可下载的 app 包。每次 push 到 `master`，或手动运行 `Build App` workflow，都会产出一个 artifact：
+本仓库通过 GitHub Actions 自动生成可下载的 app 包。每次 push 到 `master`，或手动运行 `Build App` workflow，都会创建一个 GitHub prerelease，并上传：
 
 ```text
 CmdTab-unsigned.zip
@@ -19,10 +19,12 @@ CmdTab-unsigned.zip
 
 下载路径：
 
-1. 打开 GitHub 仓库的 `Actions` 页面
-2. 选择最新的 `Build App` run
-3. 在 `Artifacts` 里下载 `CmdTab-unsigned`
+1. 打开 GitHub 仓库的 `Releases` 页面
+2. 选择最新的 `CmdTab build ...` prerelease
+3. 下载 `CmdTab-unsigned.zip`
 4. 解压后把 `CmdTab.app` 放到 `/Applications`
+
+Actions run 里也会保留同一个 zip artifact，方便从构建日志页面下载或排查失败。
 
 ## 没有 Apple Developer 账号时的说明
 
@@ -94,6 +96,7 @@ xcodebuild \
 - 使用 ad-hoc signing
 - 打包 `CmdTab.app`
 - 上传 `CmdTab-unsigned.zip` artifact
+- 创建 GitHub prerelease，并把 zip 上传到 Releases
 
 ## 许可证与致谢
 

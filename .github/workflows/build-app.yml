@@ -6,6 +6,9 @@ on:
     branches:
       - master
 
+permissions:
+  contents: write
+
 jobs:
   build:
     name: Build downloadable app
@@ -48,12 +51,26 @@ jobs:
           path: ${{ env.PRODUCT_DIR }}/CmdTab-unsigned.zip
           if-no-files-found: error
 
+      - name: Publish prerelease
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          shortSha="${GITHUB_SHA:0:7}"
+          tag="build-${GITHUB_RUN_NUMBER}.${GITHUB_RUN_ATTEMPT}-${shortSha}"
+          zipPath="$PRODUCT_DIR/$APP_NAME-unsigned.zip"
+          gh release create "$tag" "$zipPath#$APP_NAME-unsigned.zip" \
+            --repo "$GITHUB_REPOSITORY" \
+            --target "$GITHUB_SHA" \
+            --title "$APP_NAME build $shortSha" \
+            --notes "Automated ad-hoc signed build from commit $GITHUB_SHA. This build is not notarized because no Apple Developer account is configured." \
+            --prerelease
+
       - name: Add install note
         run: |
           {
-            echo "### CmdTab app artifact"
+            echo "### CmdTab app build"
             echo
-            echo "Download \`CmdTab-unsigned.zip\` from this run's artifacts."
+            echo "Download \`CmdTab-unsigned.zip\` from this run's artifacts or from the prerelease created by this workflow."
             echo
             echo "This build is ad-hoc signed and not notarized because no Apple Developer account is configured. macOS may block the first launch; use System Settings > Privacy & Security > Open Anyway if you trust this build."
           } >> "$GITHUB_STEP_SUMMARY"
