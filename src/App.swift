@@ -117,11 +117,6 @@ class App: CmdTabApplication {
         }
         initializeSettingsWindowIfNeeded()
         showSecondaryWindow(SettingsWindow.shared!)
-        if SettingsWindow.shared!.isVisible != true {
-            let window = SettingsWindow()
-            showSecondaryWindow(window)
-            window.orderFrontRegardless()
-        }
     }
 
     @objc static func showAboutWindow() {
