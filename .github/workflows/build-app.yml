@@ -9,7 +9,7 @@ on:
 jobs:
   build:
     name: Build downloadable app
-    runs-on: macos-latest
+    runs-on: macos-26
     env:
       APP_NAME: CmdTab
       DERIVED_DATA: DerivedData
