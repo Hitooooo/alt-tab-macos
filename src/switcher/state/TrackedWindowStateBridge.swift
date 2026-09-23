@@ -188,7 +188,6 @@ class TrackedWindowStateBridge {
                 if let w = Windows.byWindowId[wid] {
                     w.application.focusedWindow = w
                     App.checkIfShortcutsShouldBeDisabled(w, nil)
-                    WindowThumbnails.captureFocusedInBackground(w)
                 }
             case .refreshUi(let wids, let onlyWhileSwitcherOpen):
                 if !onlyWhileSwitcherOpen || SwitcherSession.isActive {
@@ -202,8 +201,8 @@ class TrackedWindowStateBridge {
                 Applications.reconcileAxElementEnd(wid)
             case .retireSurface(let wid):
                 Windows.retireSurfaceForReplacement(wid)
-            case .deferCaptureUntilRestoreEnds(let wid):
-                if let w = Windows.byWindowId[wid] { WindowThumbnails.deferCaptureUntilRestoreEnds(w) }
+            case .deferCaptureUntilRestoreEnds:
+                break
             case .copyThumbnail(let from, let to):
                 if let src = Windows.byWindowId[from], let dst = Windows.byWindowId[to], dst.thumbnail == nil {
                     dst.thumbnail = src.thumbnail

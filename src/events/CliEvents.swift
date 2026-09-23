@@ -112,10 +112,6 @@ class CliServer {
             Logger.info { "QA: refusing the next focus" }
             return noOutput
         }
-        if rawValue == "--qa-drop-next-discovery", #available(macOS 26.0, *) {
-            WindowCaptureScreenshots.dropNextDiscoveryForQa()
-            return noOutput
-        }
         // The visual non-regression test opening each window, sheet, popover, alert and menu in turn.
         if let reply = QaSurfaces.command(rawValue) {
             return reply
@@ -347,8 +343,7 @@ class CliServer {
     /// capture actually came back with, so a harness can judge the capture path without knowing the
     /// thumbnail-scale arithmetic.
     private static func expectedThumbnailPixelSize(_ window: Window) -> CGSize? {
-        guard let size = window.size else { return nil }
-        return WindowThumbnails.capturePixelSize(size, WindowThumbnails.captureScaleFactor(window), false)
+        nil
     }
 
     /// The panel-wide numbers every tile is placed from. `labelHeight` is the one #6010 moved: it is meant

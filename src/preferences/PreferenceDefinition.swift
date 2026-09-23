@@ -27,17 +27,7 @@ struct PreferenceDefinition<T: MacroPreference & CaseIterable & Equatable> {
     ///    return the free equivalent.
     /// 3. Otherwise → return stored, which has been downgraded to the free equivalent already.
     func read() -> T {
-        let stored: T = CachedUserDefaults.macroPref(key, Array(T.allCases))
-        guard let gate = gate, LicenseManager.shared.isProLocked else { return stored }
-        if ProTransitionManager.shared.isFreePassSessionActive,
-           let rememberedIdx = ProTransitionState.int(gate.rememberedKey),
-           Array(T.allCases).indices.contains(rememberedIdx) {
-            return Array(T.allCases)[rememberedIdx]
-        }
-        if gate.isProValue(stored) {
-            return gate.freeEquivalent
-        }
-        return stored
+        CachedUserDefaults.macroPref(key, Array(T.allCases))
     }
 
     /// If the stored value is currently a Pro selection, overwrite it with the free equivalent
@@ -92,8 +82,8 @@ extension PreferenceDefinition {
     }
 }
 
-/// Registry of every Pro-gated preference. Each entry is declared once here; `Preferences` getters,
-/// `ProTransitionState` lock/unlock passes and `ProFeature.isStoredValuePro` all read from it.
+/// Registry of preferences that were gated in upstream builds. Keeping their definitions lets
+/// migrations restore prior selections while all values remain available in this build.
 enum ProGatedPreferences {
     static let appearanceStyle = PreferenceDefinition<AppearanceStylePreference>(
         key: "appearanceStyle",

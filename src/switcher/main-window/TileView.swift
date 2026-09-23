@@ -303,11 +303,8 @@ class TileView: FlippedView {
                 let thumbnailSize = TileView.thumbnailSize(element.size, false)
                 thumbnail.updateContents(screenshot, thumbnailSize)
             } else {
-                let reservesWindowGeometry = ThumbnailPlaceholderLayout.reservesWindowGeometry(
-                    element.size, screenRecordingGranted: ScreenRecordingPermission.status == .granted)
-                thumbnail.contentsGravity = reservesWindowGeometry ? .resizeAspect : .resize
-                let sourceSize = reservesWindowGeometry ? element.size : element.icon?.size()
-                let thumbnailSize = TileView.thumbnailSize(sourceSize, !reservesWindowGeometry)
+                thumbnail.contentsGravity = .resize
+                let thumbnailSize = TileView.thumbnailSize(element.icon?.size(), true)
                 thumbnail.updateContents(.cgImage(element.icon), thumbnailSize)
             }
         }

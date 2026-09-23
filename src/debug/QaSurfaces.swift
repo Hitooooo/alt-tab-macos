@@ -102,7 +102,6 @@ enum QaSurfaces {
     }
 
     static func list() -> [Info] {
-        ProGradient.animationsDisabledForQa = true
         observePopovers()
         disableAnimations()
         return surfaces.map { Info(id: $0.id, licenses: $0.licenses) }
@@ -175,19 +174,8 @@ enum QaSurfaces {
         Menubar.menu.appearance = appearance
     }
 
-    /// Day 4 of the trial and a long-expired one, rather than whatever day the machine happens to be on: the
-    /// day count is printed in the Upgrade button, the menubar menu and the prompts.
     static func setLicense(_ license: String) {
         SettingsWindow.qaDiscard()
-        switch license {
-            case "trial":
-                LicenseManager.shared.mockTrialDay(4)
-            case "expired":
-                LicenseManager.shared.mockTrialDay(40)
-            default:
-                LicenseManager.shared.mockProUser()
-        }
-        Menubar.menubarIconCallback(nil)
     }
 
     static func closeAll(keepSettings: Bool = false) {
@@ -207,9 +195,7 @@ enum QaSurfaces {
             sheet.orderOut(nil)
         }
         if !keepSettings { SettingsWindow.qaDiscard() }
-        let windows: [NSWindow?] = [AboutWindow.shared, FeedbackWindow.shared, PermissionsWindow.shared,
-            Day1WelcomeLetterWindow.shared, Day15ProactiveWindow.shared, Day15FullUpgradeWindow.shared,
-            Day35FinalWindow.shared]
+        let windows: [NSWindow?] = [AboutWindow.shared, FeedbackWindow.shared, PermissionsWindow.shared]
         windows.compactMap { $0 }.filter { $0.isVisible }.forEach { $0.close() }
         PermissionsWindow.qaForcedStatus = nil
         current = nil
@@ -218,12 +204,12 @@ enum QaSurfaces {
     // MARK: - the surfaces
 
     private static let surfaces: [Surface] = settingsSurfaces() + controlsSurfaces() + sheetSurfaces()
-        + windowSurfaces() + proSurfaces() + alertSurfaces() + menubarSurfaces()
+        + windowSurfaces() + alertSurfaces() + menubarSurfaces()
 
     private static func settingsSurfaces() -> [Surface] {
         ["appearance", "general", "exceptions"].map { section in
             Surface(id: "settings.\(section)", licenses: nil, inSettings: true) { settings(section) }
-        } + [Surface(id: "settings.upgrade", licenses: nil, inSettings: true) { settings(nil) }]
+        }
     }
 
     private static func controlsSurfaces() -> [Surface] {
@@ -279,42 +265,6 @@ enum QaSurfaces {
         ]
     }
 
-    private static func proSurfaces() -> [Surface] {
-        let reasons: [(String, HardGateReason?)] = [
-            ("not-engaged", nil),
-            ("extra-shortcut", .feature(.extraShortcut(index: 1))),
-            ("search", .feature(.searchInSwitcher)),
-            ("app-icons", .proPreferences(appearanceStyle: .appIcons, shortcut: false)),
-            ("titles", .proPreferences(appearanceStyle: .titles, shortcut: false)),
-        ]
-        return [
-            Surface(id: "pro.welcome.new", licenses: trial, inSettings: false) { welcome(freshInstall: true) },
-            Surface(id: "pro.welcome.upgrade", licenses: trial, inSettings: false) { welcome(freshInstall: false) },
-            Surface(id: "pro.day4-tour", licenses: trial, inSettings: false) { Day4TourPopover.show(); return Target() },
-            Surface(id: "pro.day12-heads-up", licenses: trial, inSettings: false) { Day12HeadsUpPopover.show(); return Target() },
-            Surface(id: "pro.day15-proactive", licenses: expired, inSettings: false) {
-                Day15ProactiveWindow.show()
-                return target(Day15ProactiveWindow.shared)
-            },
-            Surface(id: "pro.day21-reminder", licenses: expired, inSettings: false) { Day21ReminderPopover.show(); return Target() },
-            Surface(id: "pro.day35-final", licenses: expired, inSettings: false) {
-                Day35FinalWindow.show()
-                return target(Day35FinalWindow.shared)
-            },
-        ] + reasons.flatMap { name, reason in
-            [
-                Surface(id: "pro.day15-full-upgrade.\(name)", licenses: expired, inSettings: false) {
-                    Day15FullUpgradeWindow.show(for: reason)
-                    return target(Day15FullUpgradeWindow.shared)
-                },
-                Surface(id: "pro.day15-hard-gate.\(name)", licenses: expired, inSettings: false) {
-                    Day15HardGatePopover.show(for: reason)
-                    return Target()
-                },
-            ]
-        }
-    }
-
     /// Alerts run a modal loop of their own, so they are opened on the next turn of the main loop and the
     /// harness finds their window among the ones that appeared. `closeAll` aborts the loop, and every caller
     /// here reads an aborted alert as neither of its buttons, so nothing is reset, activated or sent.
@@ -325,14 +275,6 @@ enum QaSurfaces {
             ("conflicting-shortcut", { _ = ControlsTab.confirmUnassigningConflict("• " + NSLocalizedString("Show", comment: "Menubar option")) }),
             ("settings-not-saved.symlink", { PreferencesPersistenceCheck.debugShowDialog(symlinked: true) }),
             ("settings-not-saved.unwritable", { PreferencesPersistenceCheck.debugShowDialog(symlinked: false) }),
-            ("activate-license", { UpgradeTab.presentActivationSheet() }),
-            ("activation-failed", { UpgradeTab.presentActivationSheet(prefilledKey: "QA-LICENSE-KEY", autoFailedHint: true) }),
-            ("seat-limit", { UpgradeTab.presentSeatLimitSheet(key: "QA-LICENSE-KEY", instances: seats) }),
-            ("license-error", { UpgradeTab.presentLicenseError(NSLocalizedString("Activation failed", comment: ""), LicenseAPIError.invalidKey) }),
-            ("license-error.details", {
-                UpgradeTab.presentLicenseError(NSLocalizedString("Activation failed", comment: ""),
-                    LicenseAPIError.invalidResponse(debugInfo: "HTTP 500\n{\"error\": \"qa\"}"))
-            }),
         ]
         return alerts.map { name, show in
             Surface(id: "alert.\(name)", licenses: nil, inSettings: false) {
@@ -354,9 +296,7 @@ enum QaSurfaces {
                 later { Menubar.popUpMenu() }
                 return Target()
             },
-            // Pro only: once the license lapses, the Pro styles give way to thumbnails, and the suite relaunches
-            // AltTab once per style to photograph them.
-            Surface(id: "switcher", licenses: ["pro"], inSettings: false) {
+            Surface(id: "switcher", licenses: nil, inSettings: false) {
                 App.showUi(0)
                 return target(TilesPanel.shared)
             },
@@ -397,13 +337,6 @@ enum QaSurfaces {
         return target(PermissionsWindow.shared)
     }
 
-    private static func welcome(freshInstall: Bool) -> Target {
-        Day1WelcomeLetterWindow.shared?.close()
-        Day1WelcomeLetterWindow.shared = nil
-        Day1WelcomeLetterWindow.show(forceFreshInstall: freshInstall)
-        return target(Day1WelcomeLetterWindow.shared)
-    }
-
     private static func target(_ window: NSWindow?, pager: (() -> Pager?)? = nil) -> Target {
         Target(windows: { [window].compactMap { $0 } }, pager: pager)
     }
@@ -434,11 +367,6 @@ enum QaSurfaces {
     }
 
     // MARK: - holding things still
-
-    private static let seats = [
-        ActiveInstance(id: "qa-instance-1", machineName: "MacBook Pro", lastSeenAt: Date(timeIntervalSince1970: 1_767_225_600)),
-        ActiveInstance(id: "qa-instance-2", machineName: "Mac mini", lastSeenAt: Date(timeIntervalSince1970: 1_769_904_000)),
-    ]
 
     /// Relative to now, and re-pinned before every surface, so a week's count cannot drift as the run goes on.
     private static func pinVolatileContent() {

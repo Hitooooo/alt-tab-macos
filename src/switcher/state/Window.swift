@@ -231,12 +231,9 @@ class Window {
     }
 
     func refreshThumbnail(_ screenshot: CALayerContents) {
-        // a frame the OS drew mid-animation is much smaller than this window: keep the previous thumbnail,
-        // stale but correct, while another capture is asked for (`WindowThumbnails.acceptCapture`)
-        guard WindowThumbnails.acceptCapture(self, screenshot) else { return }
         thumbnail = screenshot
         if !SwitcherSession.isActive || !shouldShowTheUser { return }
-        if let position = self.position, let size = self.size,
+        if let size = self.size,
            let view = (TilesView.recycledViews.first { $0.window_?.cgWindowId == cgWindowId }) {
             if !view.thumbnail.isHidden {
                 let thumbnailSize = TileView.thumbnailSize(size, false)
@@ -246,11 +243,6 @@ class Window {
                 if newSize {
                     App.refreshOpenUiAfterExternalEvent([])
                 }
-            }
-            // a thumbnail-scale refresh must not downgrade the sharp full-res frame the Preview may be
-            // showing; the thumbnail only serves as the instant placeholder before the full-res fetch lands
-            if cgWindowId.flatMap({ SwitcherSession.current?.hasPreviewFrame($0) }) != true {
-                PreviewPanel.updateIfShowing(cgWindowId, screenshot, position, size)
             }
         }
     }
@@ -346,7 +338,6 @@ class Window {
             FocusIntents.shared.supersede()
             App.shared.activate(ignoringOtherApps: true)
             altTabWindow.makeKeyAndOrderFront(nil)
-            WindowThumbnails.previewSelectedIfNeeded()
         } else if self.isWindowlessApp || cgWindowId == nil {
             FocusIntents.shared.supersede()
             if let bundleUrl = application.bundleURL, self.isWindowlessApp {
@@ -359,7 +350,6 @@ class Window {
             } else {
                 application.runningApplication.activate(options: .activateAllWindows)
             }
-            WindowThumbnails.previewSelectedIfNeeded()
         } else {
             // macOS bug: when switching to a System Preferences window in another space, it switches to that space,
             // but quickly switches back to another window in that space
@@ -424,9 +414,6 @@ class Window {
         repairIfSuperseded(generation)
         guard FocusIntents.shared.mayProceed(generation) else { return }
         hearWhereFocusLanded()
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(50)) {
-            WindowThumbnails.previewSelectedIfNeeded()
-        }
     }
 
     private func hearWhereFocusLanded() {
