@@ -1,4 +1,4 @@
-You can [suggest an enhancement or discuss an issue on github](https://github.com/lwouis/alt-tab-macos/issues), or use the feedback form in the app.
+You can [suggest an enhancement or report an issue](https://github.com/Hitooooo/alt-tab-macos/issues), or use the feedback form in CmdTab.
 
 ## Technical overview
 
@@ -6,31 +6,29 @@ This document gives a technical overview of the project, for newcomers who want 
 
 ## Building the project
 
-This project has minimal dependency on Xcode-only features (e.g. InterfaceBuilder, Playgrounds). You can build it by doing:
+The app is written in Swift 5.8 and AppKit, without Interface Builder or SwiftUI. From the repository root:
 
 * `scripts/codesign/setup_local.sh` to generate a local self-signed certificate, to avoid having to re-check the `System Preferences > Security & Privacy` permissions on every build
-* Either open `alt-tab-macos.xcodeproj` with Xcode, or use the CLI: `xcodebuild -project alt-tab-macos.xcodeproj -scheme Debug` to build the .app with the `Debug` build configuration
+* Run `./ai/build.sh` to build the Debug app, or `./ai/test.sh` to run the unit tests. The app bundle is `DerivedData/Build/Products/Debug/CmdTab.app`.
 
 ## Mac development
 
-Mac development ecosystem is pretty terrible in general. They keep piling on the tech stacks on top of each other, so you have C APIs, ObjC APIs, Swift APIs, Interface builder, Playgrounds, Swift UI, Mac Catalyst. All these are bridging with each other with a bunch of macros, SDKs glue, compiler flags, compatibility mode, XCode legacy build system, etc. For alt-tab, we are on Swift 5.0. Note that swift just recently started being stable, but overall any change of version breaks a lot of stuff. Swift itself is the mainstream language with the worst governance I’ve seen in modern times.
+CmdTab supports macOS 12 and later. The GitHub Actions build uses the `xcode-27` preview runner to check the current macOS 27 SDK; the runner label is maintained by GitHub and may change as the preview evolves.
 
-Regarding SDKs, it’s very different from other (better) ecosystems like Java. Here the SDK is bundled with XCode, and XCode is bundled with the OS. This means that from a machine running let’s say macOS 10.10, you have access to only a specific range of XCode versions (you can’t run the latest for instance), and these give you access to a specific range of SDKs (i.e. Swift + objc + c + bridges + compiler + toolchain + etc)
-
-Documentation is abysmal. Very simple things are not documented at all, and good information is hard to find. Compared to other ecosystem I’ve worked on in the past like Android, nodejs, Java, rust, this is really a bad spot. You can truly tell Apple doesn’t care about supporting third-parties. They are in such a good position that people will struggle and just push through to deliver on their ecosystem because it is so valuable, and because they don’t have to care, they don’t. They could pay an intern to update the docs over the summer for instance, just to give you context of the lack of care we are talking about here.
+The macOS SDK ships with Xcode, so the CI workflow checks the app against the current macOS 27 SDK while the deployment target remains macOS 12.
 
 Dependencies in this project are vendored under `vendor/` and consumed as local Swift Package Manager packages. Each dependency has an `update_*.sh` script under `vendor/scripts/` that re-fetches it from upstream, strips unused files, and regenerates its `Package.swift`. There is no remote dependency resolution at build time — `git clone && xcodebuild` is the full bootstrap.
 
-OS APIs are quite limited for the kind of low-level, system-wide app AltTab is. This means often we just don’t have an API to do something. For instance, there is no API to ask the OS “how many Spaces does the user have?” or “Can you focus the window on Space 2?”. There are however, retro-engineered private APIs which you can call. These are not documented at all, not guaranteed to be there in future macOS releases, and prevent us from releasing AltTab on the Mac AppStore. We have tried our best to [document the ones we are using](https://github.com/lwouis/alt-tab-macos/tree/master/src/macos/api-wrappers), next to the code that calls them.
+OS APIs are limited for a system-wide window switcher. Some operations rely on reverse-engineered private APIs that are not guaranteed to remain stable and prevent Mac App Store distribution. The wrappers used by CmdTab are documented in [`src/macos/api-wrappers/`](../src/macos/api-wrappers/).
 
 ## Project architecture
 
-To mitigate the issues listed above, we took some measures.
+The project keeps its UI in AppKit code and its build settings in version-controlled configuration files.
 
 We minimize reliance on XCode, InterfaceBuilder, Playground, and other GUI tools. You can’t cut the dependency completely though as only XCode can build macOS apps. The whole UI, including the menubar, is built in code (no xib). Currently, the project has these files:
 
-* `alt-tab-macos.xcodeproj` file describing AltTab itself. It contains some settings for the app
-* `alt_tab_macos.entitlements` and `Info.plist` which are static files describing some app config for XCode
+* `cmdtab-macos.xcodeproj` describes the app and its targets
+* `cmdtab.entitlements` and `Info.plist` describe app configuration
 * `vendor/` holds vendored open-source libraries (Sparkle, ShortcutRecorder, AppCenter) as local SPM packages. `vendor/scripts/update_*.sh` refresh them from upstream
 * Some `.xcconfig` files in `config/` which contain XCode settings that people typically change using XCode UI, but that I want to be version controlled
 
@@ -54,11 +52,10 @@ The `src/` folder groups files by feature, so files that change together live to
 | `src/events/`           | incoming events we listen to (keyboard, mouse, cursor, Dock, AX queries, etc.) |
 | `src/macos/`            | wrappers around macOS APIs (AX/CGS call schedulers, permissions, login item); `src/macos/api-wrappers/` holds the retro-engineered private-API signatures |
 | `src/preferences/`      | user settings: storage, migrations, and the Settings window |
-| `src/pro/`              | the paid "Pro" features (license, scheduling, related UI) |
 | `src/secondary-windows/`| windows other than the switcher (feedback, permission, debug) |
 | `src/kit/`              | reusable AppKit building blocks (custom buttons, views, controls) |
 | `src/util/`             | generic helpers (background work, throttling, scheduling policy) |
-| `src/api/`              | client for our backend (license and feedback endpoints) |
+| `src/api/`              | clients for feedback and update endpoints |
 | `src/vendors/`          | glue code for vendored libraries (AppCenter, Sparkle, ObjC exception catcher) |
 | `src/debug/`            | benchmarking and QA tooling |
 | `src/_test-support/`    | mocks and helpers shared by the unit tests |
@@ -103,9 +100,9 @@ In an attempt to not have too many regressions, this documents will list OS inte
 * Long titles should be truncated
 * Many windows are opened
 * There is no open window
-* AltTab should appear on top of all windows, dialogs, pop-overs, the Dock, etc
+* CmdTab should appear on top of all windows, dialogs, pop-overs, the Dock, etc
 
-### OS events to handle while AltTab’s UI is shown
+### OS events to handle while CmdTab’s UI is shown
 
 * An app is launching/quitting
 * A new window opens
@@ -120,9 +117,9 @@ In an attempt to not have too many regressions, this documents will list OS inte
 
 * General > Appearance > "Dark": switches to Dark Mode
 * General > Accent color > "Graphite": traffic lights on thumbnails should be gray
-* Accessibility > Display > Reduce transparency: AltTab background should be a solid color
+* Accessibility > Display > Reduce transparency: CmdTab background should be a solid color
 * General > Show scroll bars > "Always": regenerates all scrollbars
-* Display > Resolution > Scaled: changes DPI and rescale AltTab
+* Display > Resolution > Scaled: changes DPI and rescales CmdTab
 * Mission Control > "Displays have separate Spaces": changes Spaces behavior on multi-displays setups
 
 ### Spaces
@@ -140,14 +137,14 @@ In an attempt to not have too many regressions, this documents will list OS inte
 * The "select next window" shortcut can be modifiers, modifiers+key, or just key; it can also contain the same modifiers as the hold "key"
 * All shortcuts, except the hold key, can be disabled by the user
 * Shortcuts can include the `escape` and `delete` key; these should not stop recording shortcuts
-* [Secure Input](https://github.com/lwouis/alt-tab-macos/issues/157#issuecomment-659170293) can prevent AltTab from listening to the keyboard
-* Some shortcuts should only work when AltTab is open
+* [Secure Input](https://github.com/lwouis/alt-tab-macos/issues/157#issuecomment-659170293) can prevent CmdTab from listening to the keyboard
+* Some shortcuts should only work when CmdTab is open
   * These shortcuts should active whether the hold shortcut is held or not
 * Shortcuts should work with capslock active or inactive
 * Shortcuts should repeat if kept pressed
   * Repeat rate and initial delay should match the values set in `System Preference` > `Keyboard`
   * when navigating left/right/up/down, the repeating behavior should stop when hitting the last window in the list. The user can then manually do the shortcut once more to cycle to the other side; it then repeats again
-* The shortcut sets 1 and 2 should not interact with each other (e.g. opening AltTab with one, then using the other to navigate)
+* The shortcut sets 1 and 2 should not interact with each other (e.g. opening CmdTab with one, then using the other to navigate)
 * Shortcuts can focus the window on release, or be pressing a key or using the mouse
 * Keyboards from other countries have different layout which impact shortcuts
   * e.g. the default ``` ⌥` ``` shortcut should become `⌥<` on a Spanish ISO keyboard
@@ -161,6 +158,6 @@ In an attempt to not have too many regressions, this documents will list OS inte
 
 ### Misc
 
-* AltTab is launched after some apps/windows are already opened
-* Displays/mouses/trackpads/keyboards get connected/disconnected while AltTab is used
+* CmdTab is launched after some apps/windows are already opened
+* Displays/mouses/trackpads/keyboards get connected/disconnected while CmdTab is used
 * Sudden Termination
