@@ -1,0 +1,76 @@
+name: Build App
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build downloadable app
+    runs-on: xcode-27
+    env:
+      APP_NAME: CmdTab
+      DERIVED_DATA: DerivedData
+      PRODUCT_DIR: DerivedData/Build/Products/Release
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Select Xcode
+        run: xcodebuild -version
+
+      - name: Build release app
+        run: |
+          set -o pipefail
+          xcodebuild \
+            -project cmdtab-macos.xcodeproj \
+            -scheme Release \
+            -configuration Release \
+            -derivedDataPath "$DERIVED_DATA" \
+            CODE_SIGN_IDENTITY=- \
+            CODE_SIGN_STYLE=Manual \
+            DEVELOPMENT_TEAM= \
+            OTHER_CODE_SIGN_FLAGS=--timestamp=none \
+            | scripts/xcbeautify
+
+      - name: Package app
+        run: |
+          cd "$PRODUCT_DIR"
+          ditto -c -k --keepParent "$APP_NAME.app" "$APP_NAME-unsigned.zip"
+
+      - name: Upload app artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: CmdTab-unsigned
+          path: ${{ env.PRODUCT_DIR }}/CmdTab-unsigned.zip
+          if-no-files-found: error
+
+      - name: Publish prerelease
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          shortSha="${GITHUB_SHA:0:7}"
+          tag="build-${GITHUB_RUN_NUMBER}.${GITHUB_RUN_ATTEMPT}-${shortSha}"
+          zipPath="$PRODUCT_DIR/$APP_NAME-unsigned.zip"
+          gh release create "$tag" "$zipPath#$APP_NAME-unsigned.zip" \
+            --repo "$GITHUB_REPOSITORY" \
+            --target "$GITHUB_SHA" \
+            --title "$APP_NAME build $shortSha" \
+            --notes "Automated ad-hoc signed build from commit $GITHUB_SHA. This build is not notarized because no Apple Developer account is configured." \
+            --prerelease
+
+      - name: Add install note
+        run: |
+          {
+            echo "### CmdTab app build"
+            echo
+            echo "Download \`CmdTab-unsigned.zip\` from this run's artifacts or from the prerelease created by this workflow."
+            echo
+            echo "This build is ad-hoc signed and not notarized because no Apple Developer account is configured. macOS may block the first launch; use System Settings > Privacy & Security > Open Anyway if you trust this build."
+          } >> "$GITHUB_STEP_SUMMARY"

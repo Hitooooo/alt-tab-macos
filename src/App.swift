@@ -9,13 +9,18 @@ class App: AppCenterApplication {
     /// disabled.
     private static let activity = ProcessInfo.processInfo.beginActivity(options: .userInitiatedAllowingIdleSystemSleep,
         reason: "Prevent App Nap to preserve responsiveness")
-    static let bundleIdentifier = Bundle.main.bundleIdentifier!
+    static let bundleIdentifier = Bundle.main.bundleIdentifier ?? "com.hitomeng.cmdtab"
     static let bundleURL = Bundle.main.bundleURL
-    static let name = Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as! String
-    static let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String
-    static let licence = Bundle.main.object(forInfoDictionaryKey: "NSHumanReadableCopyright") as! String
-    static let repository = "https://github.com/lwouis/alt-tab-macos"
+    static let name = bundleInfo("CFBundleName", "CmdTab")
+    static let version = bundleInfo("CFBundleVersion", "0")
+    static let licence = bundleInfo("NSHumanReadableCopyright", "GPL-3.0 licence")
+    static let repository = "https://github.com/Hitooooo/cmdtab-macos"
     static let appIconReps = CGImage.allNamed("app.icns")
+
+    private static func bundleInfo(_ key: String, _ fallback: String) -> String {
+        guard let value = Bundle.main.object(forInfoDictionaryKey: key) else { return fallback }
+        return value as? String ?? String(describing: value)
+    }
 
     static func appIcon(for size: NSSize) -> CGImage {
         let scale = NSScreen.main?.backingScaleFactor ?? 2.0
@@ -58,7 +63,7 @@ class App: AppCenterApplication {
 
     static func restart() {
         // we use -n to open a new instance, to avoid calling applicationShouldHandleReopen
-        // we use Bundle.main.bundlePath in case of multiple AltTab versions on the machine
+        // we use Bundle.main.bundlePath in case of multiple CmdTab versions on the machine
         printStackTrace()
         Process.launchedProcess(launchPath: "/usr/bin/open", arguments: ["-n", Bundle.main.bundlePath])
         App.shared.terminate(nil)
@@ -490,7 +495,7 @@ class App: AppCenterApplication {
         if QAMenu.graphEnabled { DebugMenu.setEnabled(true) }
         #endif
         UsageStats.prune()
-        Logger.info { "Finished launching AltTab" }
+        Logger.info { "Finished launching CmdTab" }
     }
 }
 
@@ -500,7 +505,7 @@ extension App: NSApplicationDelegate {
         App.shared.disableRelaunchOnLogin()
         Logger.initialize()
         MainThreadStall.observe()
-        Logger.info { "Launching AltTab \(App.version)" }
+        Logger.info { "Launching CmdTab \(App.version)" }
         // Create the background queues first, before anything that can pump the main run loop re-entrantly
         // (the "move to /Applications" modal below, the WindowServer tap's discovery). Window.init reads
         // BackgroundWork.screenshotsQueue (an implicitly-unwrapped optional) via Application.fetchAppIcon, so
