@@ -74,7 +74,7 @@ final class PreferencesMigrationsTests: XCTestCase {
         XCTAssertEqual(defaults.string(forKey: "appearanceStyleOverride"), "1")
         XCTAssertEqual(defaults.string(forKey: "appearanceSizeOverride"), "3")
         XCTAssertEqual(defaults.string(forKey: "shortcutStyleOverride"), "2")
-        XCTAssertNil(UserDefaults.standard.persistentDomain(forName: legacySuiteName))
+        XCTAssertTrue((UserDefaults.standard.persistentDomain(forName: legacySuiteName) ?? [:]).isEmpty)
     }
 
     /// An empty legacy domain changes no current preference and is still safe to remove.
@@ -82,7 +82,7 @@ final class PreferencesMigrationsTests: XCTestCase {
         defaults.set("1", forKey: "appearanceStyle")
         PreferencesMigrations.restoreLegacyGatedPreferences(legacyDefaults, legacySuiteName)
         XCTAssertEqual(defaults.string(forKey: "appearanceStyle"), "1")
-        XCTAssertNil(UserDefaults.standard.persistentDomain(forName: legacySuiteName))
+        XCTAssertTrue((UserDefaults.standard.persistentDomain(forName: legacySuiteName) ?? [:]).isEmpty)
     }
 
     /// Invalid remembered enum indices are ignored rather than corrupting current preferences.

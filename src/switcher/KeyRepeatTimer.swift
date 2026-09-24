@@ -6,6 +6,7 @@ class KeyRepeatTimer {
     static var timer = DispatchSource.makeTimerSource(queue: BackgroundWork.repeatingKeyQueue.strongUnderlyingQueue)
     static var timerIsSuspended = true
     static var currentTimerShortcutName: String?
+    private static let mainDeliveryGate = PendingDeliveryGate()
 
     static func startRepeatingKeyPreviousWindow() {
         if let shortcut = ControlsTab.shortcuts["previousWindowShortcut"],
@@ -53,7 +54,9 @@ class KeyRepeatTimer {
     }
 
     private static func handleEvent(_ atShortcut: ATShortcut, _ block: @escaping () -> Void) {
+        guard mainDeliveryGate.reserve() else { return }
         DispatchQueue.main.async {
+            defer { mainDeliveryGate.release() }
             if atShortcut.state == .up || (atShortcut.scope == .global && holdModifierIsReleased()) {
                 stopTimerForRepeatingKey(atShortcut.id)
             } else {

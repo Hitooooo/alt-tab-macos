@@ -68,8 +68,14 @@ class Menubar {
         if let type = NSApp.currentEvent?.type, type != .leftMouseDown {
             App.showUiFromShortcut0()
         } else {
-            statusItem.popUpMenu(Menubar.menu)
+            popUpMenu()
         }
+    }
+
+    private static func popUpMenu() {
+        statusItem.menu = menu
+        statusItem.button!.performClick(nil)
+        statusItem.menu = nil
     }
 
     static func menubarIconCallback(_: NSControl?) {

@@ -1,6 +1,7 @@
 import Cocoa
 import Carbon.HIToolbox.Events
 import ShortcutRecorder
+import UniformTypeIdentifiers
 
 enum SearchKeyResult {
     case handled
@@ -448,12 +449,10 @@ class TilesView {
         while index < TilesView.recycledViews.count {
             guard SwitcherSession.isActive else { return maxY }
             defer { index += 1 }
-            let view = TilesView.recycledViews[index]
             guard index < Windows.list.count else { break }
             let window = Windows.list[index]
-            guard Windows.shouldDisplay(window) else { view.frame = .zero; continue }
-            view.updateRecycledCellWithNewContent(window, index, height)
-            let width = view.frame.size.width
+            guard Windows.shouldDisplay(window) else { continue }
+            let width = TileView.layoutWidth(window)
             let projectedX = projectedWidth(currentX, width).rounded(.down)
             if needNewLine(projectedX, widthMax) {
                 currentX = startingX
@@ -559,7 +558,7 @@ class TilesView {
         var frameHeight = TilesView.thumbnailsHeight + Appearance.windowPadding * 2 + searchReservedHeight
         let originX = Appearance.windowPadding
         var originY = Appearance.windowPadding
-        if Preferences.effectiveAppearanceStyle(SwitcherSession.activeShortcutIndex) == .appIcons {
+        if Appearance.style == .appIcons {
             // If there is title under the icon on the last line, the height of the title needs to be subtracted.
             frameHeight = frameHeight - Appearance.intraCellPadding - labelHeight
             originY = originY - Appearance.intraCellPadding - labelHeight
@@ -610,7 +609,7 @@ class TilesView {
     }
 
     private static func appIconsBottomViewportPadding(_ maxY: CGFloat, _ heightMax: CGFloat, _ labelHeight: CGFloat) -> CGFloat {
-        guard Preferences.effectiveAppearanceStyle(SwitcherSession.activeShortcutIndex) == .appIcons, maxY > heightMax else { return 0 }
+        guard Appearance.style == .appIcons, maxY > heightMax else { return 0 }
         return max(0, Appearance.windowPadding - labelHeight)
     }
 
@@ -748,7 +747,7 @@ class TilesDocumentView: FlippedView {
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
         // we only handle URLs (i.e. not text, image, or other draggable things)
-        registerForDraggedTypes([NSPasteboard.PasteboardType(kUTTypeURL as String)])
+        registerForDraggedTypes([NSPasteboard.PasteboardType(UTType.url.identifier)])
     }
 
     required init?(coder: NSCoder) {
@@ -778,9 +777,11 @@ class TilesDocumentView: FlippedView {
         let urls = (sender.draggingPasteboard.readObjects(forClasses: [NSURL.self]) as? [URL]) ?? []
         guard DragAndDropResolver.canDrop(hasTarget: target != nil, hasWindow: target?.window_ != nil, hasAppBundleURL: appUrl != nil, urlCount: urls.count),
               let appUrl else { return false }
-        let open = try? NSWorkspace.shared.open(urls, withApplicationAt: appUrl, options: [], configuration: [:])
-        if open != nil { App.hideUi() }
-        return open != nil
+        NSWorkspace.shared.open(urls, withApplicationAt: appUrl, configuration: NSWorkspace.OpenConfiguration()) { _, error in
+            if let error { Logger.error { "drag-and-drop failed to open urls: \(error)" } }
+        }
+        App.hideUi()
+        return true
     }
 
     override func concludeDragOperation(_ sender: NSDraggingInfo?) {

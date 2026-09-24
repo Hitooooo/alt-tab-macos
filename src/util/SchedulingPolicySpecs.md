@@ -9,6 +9,8 @@ testable without real clocks or queues (same pattern as `SelectionResolver` / `A
   window) schedule a single trailing run and coalesce the rest. Used by `Throttler` and `ThrottlerWithKey`.
 - **`RetryPolicy`** — backoff schedule (200ms → 1s → 2s → 5s, then 5s) and the 60s give-up, for retrying
   an AX call against an unresponsive app. Used by `AXCallScheduler`.
+- **`PendingDeliveryGate`** — permits one queued delivery and coalesces equivalent producer events until
+  the consumer releases it. Used by `KeyRepeatTimer` to prevent main-thread input backlog.
 
 ## Test scenarios
 
@@ -27,3 +29,8 @@ Mirrors `SchedulingPolicyTests.swift` 1:1.
 - **testRetryBackoffClampsAndFloors** — counts past the last step clamp to 5s; negative counts floor to the first step.
 - **testRetryGivesUpAtThreshold** — elapsed ≥ 60s → give up.
 - **testRetryDoesNotGiveUpEarly** — elapsed < 60s → keep retrying.
+
+### C. PendingDeliveryGate
+- **testPendingDeliveryGateReservesOnlyOneDelivery** — a second reservation is rejected while one is pending.
+- **testPendingDeliveryGateAllowsDeliveryAfterRelease** — releasing the pending item permits the next delivery.
+- **testPendingDeliveryGateCoalescesConcurrentProducers** — concurrent producers can reserve exactly one delivery.

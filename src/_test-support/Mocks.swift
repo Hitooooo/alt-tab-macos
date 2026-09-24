@@ -56,7 +56,7 @@ func noAnimation<T: CALayer>(_ make: () -> T) -> T {
 }
 
 extension NSColor {
-    class var systemAccentColor: NSColor { .alternateSelectedControlColor }
+    class var systemAccentColor: NSColor { .controlAccentColor }
     class var tableBorderColor: NSColor { .gridColor }
     class var tableBackgroundColor: NSColor { .windowBackgroundColor }
     class var tableSeparatorColor: NSColor { .gridColor }

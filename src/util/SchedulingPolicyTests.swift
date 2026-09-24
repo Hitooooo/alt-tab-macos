@@ -60,4 +60,32 @@ final class SchedulingPolicyTests: XCTestCase {
         XCTAssertFalse(RetryPolicy.shouldGiveUp(elapsedSinceStartNs: 0))
         XCTAssertFalse(RetryPolicy.shouldGiveUp(elapsedSinceStartNs: 59_999_999_999))
     }
+
+    // MARK: - C. PendingDeliveryGate
+
+    func testPendingDeliveryGateReservesOnlyOneDelivery() {
+        let gate = PendingDeliveryGate()
+        XCTAssertTrue(gate.reserve())
+        XCTAssertFalse(gate.reserve())
+    }
+
+    func testPendingDeliveryGateAllowsDeliveryAfterRelease() {
+        let gate = PendingDeliveryGate()
+        XCTAssertTrue(gate.reserve())
+        gate.release()
+        XCTAssertTrue(gate.reserve())
+    }
+
+    func testPendingDeliveryGateCoalescesConcurrentProducers() {
+        let gate = PendingDeliveryGate()
+        let countLock = NSLock()
+        var reservations = 0
+        DispatchQueue.concurrentPerform(iterations: 100) { _ in
+            guard gate.reserve() else { return }
+            countLock.lock()
+            reservations += 1
+            countLock.unlock()
+        }
+        XCTAssertEqual(reservations, 1)
+    }
 }

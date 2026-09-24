@@ -274,6 +274,7 @@ class App: CmdTabApplication {
                 session.forceDoNothingOnRelease = true
             }
             if !Windows.updatesBeforeShowing() { hideUi(); return }
+            BenchmarkRunner.mark(.windowsReady)
             Windows.setInitialSelectedAndHoveredWindowIndex()
             if Preferences.windowDisplayDelay == DispatchTimeInterval.milliseconds(0) {
                 buildUiAndShowPanel()
@@ -297,10 +298,13 @@ class App: CmdTabApplication {
         Appearance.update()
         guard SwitcherSession.isActive else { return }
         TilesView.swapBackgroundViewIfNeeded()
+        BenchmarkRunner.mark(.appearanceReady)
         guard SwitcherSession.isActive else { return }
         refreshUi()
+        BenchmarkRunner.mark(.layoutReady)
         guard SwitcherSession.isActive else { return }
         TilesPanel.shared.show()
+        BenchmarkRunner.mark(.visible)
         if TilesView.isSearchEditing {
             TilesView.enableSearchEditing()
         }

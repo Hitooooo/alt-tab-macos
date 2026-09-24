@@ -82,6 +82,9 @@
 		5FA002000000000000000020 /* ShortcutConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA001000000000000000020 /* ShortcutConfiguration.swift */; };
 		5FA1E0B22F50000100A1A1A1 /* PreferencesEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA1E0B12F50000100A1A1A1 /* PreferencesEvents.swift */; };
 		5FBB24D32F389A0400BF7E14 /* Benchmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FBB24D22F389A0400BF7E14 /* Benchmark.swift */; };
+		5EBA00000000000000000003 /* BenchmarkMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA00000000000000000001 /* BenchmarkMetrics.swift */; };
+		5EBA00000000000000000004 /* BenchmarkMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA00000000000000000001 /* BenchmarkMetrics.swift */; };
+		5EBA00000000000000000005 /* BenchmarkMetricsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA00000000000000000002 /* BenchmarkMetricsTests.swift */; };
 		5FC5980000000000000A0002 /* NativeHotkeyResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC5980000000000000A0001 /* NativeHotkeyResolver.swift */; };
 		5FC5980000000000000A0003 /* NativeHotkeyResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC5980000000000000A0001 /* NativeHotkeyResolver.swift */; };
 		5FC5980000000000000A0102 /* NativeHotkeyResolverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC5980000000000000A0101 /* NativeHotkeyResolverTests.swift */; };
@@ -355,6 +358,8 @@
 		5FB41C092F9D1F4700ECF3CF /* icon_32x32@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_32x32@2x.png"; sourceTree = "<group>"; };
 		5FB41C0A2F9D1F4700ECF3CF /* icon_128x128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_128x128.png; sourceTree = "<group>"; };
 		5FBB24D22F389A0400BF7E14 /* Benchmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Benchmark.swift; sourceTree = "<group>"; };
+		5EBA00000000000000000001 /* BenchmarkMetrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenchmarkMetrics.swift; sourceTree = "<group>"; };
+		5EBA00000000000000000002 /* BenchmarkMetricsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenchmarkMetricsTests.swift; sourceTree = "<group>"; };
 		5FC0B4352F8F6ECB00DCC310 /* changelog.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = changelog.md; sourceTree = "<group>"; };
 		5FC0B4362F8F6EE500DCC310 /* frontpage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = frontpage.jpg; sourceTree = "<group>"; };
 		5FC0B4372F8F6EE500DCC310 /* jetbrains.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = jetbrains.svg; sourceTree = "<group>"; };
@@ -991,6 +996,8 @@
 			isa = PBXGroup;
 			children = (
 				5FBB24D22F389A0400BF7E14 /* Benchmark.swift */,
+				5EBA00000000000000000001 /* BenchmarkMetrics.swift */,
+				5EBA00000000000000000002 /* BenchmarkMetricsTests.swift */,
 				BF0CA0005555666677778888 /* QAMenu.swift */,
 			);
 			path = debug;
@@ -1630,6 +1637,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5EBA00000000000000000004 /* BenchmarkMetrics.swift in Sources */,
+				5EBA00000000000000000005 /* BenchmarkMetricsTests.swift in Sources */,
 				5F882F382EC3C63400110A9F /* CustomRecorderControlTestable.swift in Sources */,
 				BF0C81FA62D810342F59291A /* AppearanceTests.swift in Sources */,
 				5EA8E110000000000000F003 /* AxEventRouting.swift in Sources */,
@@ -1760,6 +1769,7 @@
 				5FA1E0B22F50000100A1A1A1 /* PreferencesEvents.swift in Sources */,
 				D04BA4A11F821548EE3C5E95 /* Bash.swift in Sources */,
 				5FBB24D32F389A0400BF7E14 /* Benchmark.swift in Sources */,
+				5EBA00000000000000000003 /* BenchmarkMetrics.swift in Sources */,
 				5F21C9E62C6E94920091F72F /* AnimationsSheet.swift in Sources */,
 				D04BAFB90E00AA5D662EAF24 /* PermissionsWindow.swift in Sources */,
 				D04BA7E39FA539DD8316447A /* PermissionView.swift in Sources */,

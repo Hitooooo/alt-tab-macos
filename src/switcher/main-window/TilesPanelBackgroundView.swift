@@ -18,10 +18,11 @@ class LiquidGlassEffectView: NSGlassEffectView, EffectView {
         } else {
             style = .regular
         }
-        updateAppearance()
         wantsLayer = true
         // without this, there are weird shadows around the corners
         layer!.masksToBounds = true
+        layer!.cornerCurve = .continuous
+        updateAppearance()
     }
 
     func safeSetVariant(_ value: Int) {
@@ -34,6 +35,7 @@ class LiquidGlassEffectView: NSGlassEffectView, EffectView {
 
     func updateAppearance() {
         cornerRadius = Appearance.windowCornerRadius
+        layer!.cornerRadius = cornerRadius
     }
 }
 

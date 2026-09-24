@@ -34,3 +34,24 @@ enum RetryPolicy {
         elapsedSinceStartNs >= giveUpAfterNs
     }
 }
+
+/// Bounds asynchronous producer-to-consumer delivery to one pending item. This is useful when the
+/// producer is periodic and newer items are equivalent to an item already waiting on a busy queue.
+final class PendingDeliveryGate {
+    private let lock = NSLock()
+    private var isPending = false
+
+    func reserve() -> Bool {
+        lock.lock()
+        defer { lock.unlock() }
+        guard !isPending else { return false }
+        isPending = true
+        return true
+    }
+
+    func release() {
+        lock.lock()
+        isPending = false
+        lock.unlock()
+    }
+}

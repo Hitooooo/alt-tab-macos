@@ -1,6 +1,7 @@
 import Cocoa
 
 class Appearance {
+    static var style = AppearanceStylePreference.appIcons
     // size
     static var resolvedSize = AppearanceSizePreference.medium
     static var hideThumbnails = Bool(false)
@@ -25,7 +26,7 @@ class Appearance {
     // theme
     static var fontColor = NSColor.red
     static var imagesShadowColor = NSColor.red // for icon, thumbnail and windowless images
-    static var material = NSVisualEffectView.Material.ultraDark
+    static var material = LegacyMaterial.ultraDark
     static var highlightBorderWidth = CGFloat(3)
 
     // theme: constants
@@ -37,14 +38,14 @@ class Appearance {
     static var searchMatchHighlightColor: NSColor { get { NSColor.systemYellow.withAlphaComponent(0.5) } }
     static var searchMatchForegroundColor: NSColor { get { NSColor(calibratedWhite: 0.12, alpha: 1) } }
 
-    private static var currentStyle: AppearanceStylePreference { Preferences.effectiveAppearanceStyle(SwitcherSession.activeShortcutIndex) }
     private static var currentSize: AppearanceSizePreference { Preferences.effectiveAppearanceSize(SwitcherSession.activeShortcutIndex) }
     static var currentTheme: AppearanceThemePreference {
         let theme = Preferences.effectiveAppearanceTheme(SwitcherSession.activeShortcutIndex)
-        return theme == .system ? NSAppearance.current.getThemeName() : theme
+        return theme == .system ? NSAppearance.currentDrawing().getThemeName() : theme
     }
 
     static func update() {
+        style = Preferences.effectiveAppearanceStyle(SwitcherSession.activeShortcutIndex)
         updateSize()
         updateTheme()
     }
@@ -66,9 +67,9 @@ class Appearance {
     }
 
     private static func applyConcreteSize(_ size: AppearanceSizePreference, _ isHorizontalScreen: Bool) {
-        if currentStyle == .appIcons {
+        if style == .appIcons {
             appIconsSize(size)
-        } else if currentStyle == .titles {
+        } else if style == .titles {
             titlesSize(isHorizontalScreen, size)
         } else {
             thumbnailsSize(isHorizontalScreen, size)
@@ -76,14 +77,14 @@ class Appearance {
     }
 
     private static func updateTheme() {
-        highlightBorderWidth = currentStyle == .titles ? 2 : 3
+        highlightBorderWidth = style == .titles ? 2 : 3
         if currentTheme == .dark {
             darkTheme()
         } else {
             lightTheme()
         }
         // for Liquid Glass, we don't want a shadow around the panel
-        if #available(macOS 26.0, *), currentStyle == .appIcons && LiquidGlassEffectView.canUsePrivateLiquidGlassLook() {
+        if #available(macOS 26.0, *), style == .appIcons && LiquidGlassEffectView.canUsePrivateLiquidGlassLook() {
             enablePanelShadow = false
         } else {
             enablePanelShadow = true
@@ -181,7 +182,7 @@ class Appearance {
 
     private static func updateFont() {
         if #available(macOS 26.0, *) {
-            font = NSFont.systemFont(ofSize: fontHeight, weight: currentStyle == .appIcons ? .semibold : .medium)
+            font = NSFont.systemFont(ofSize: fontHeight, weight: style == .appIcons ? .semibold : .medium)
         } else {
             font = NSFont.systemFont(ofSize: fontHeight)
         }
@@ -190,12 +191,18 @@ class Appearance {
     private static func lightTheme() {
         fontColor = .black.withAlphaComponent(0.8)
         imagesShadowColor = .gray.withAlphaComponent(0.8)
-        material = .mediumLight
+        material = LegacyMaterial.mediumLight
     }
 
     private static func darkTheme() {
         fontColor = .white.withAlphaComponent(0.85)
         imagesShadowColor = .gray.withAlphaComponent(0.8)
-        material = .dark
+        material = LegacyMaterial.dark
     }
+}
+
+enum LegacyMaterial {
+    static let dark = NSVisualEffectView.Material(rawValue: 2)!
+    static let mediumLight = NSVisualEffectView.Material(rawValue: 8)!
+    static let ultraDark = NSVisualEffectView.Material(rawValue: 9)!
 }

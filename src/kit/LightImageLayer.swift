@@ -24,14 +24,21 @@ class LightImageLayer: CALayer {
     func updateContents(_ caLayerContents: CALayerContents, _ size: NSSize) {
         switch caLayerContents {
         case .cgImage(let image?):
-            contents = image
+            updateContentsIfNeeded(image)
         case .pixelBuffer(let pixelBuffer?):
-            contents = CVPixelBufferGetIOSurface(pixelBuffer)?.takeUnretainedValue()
+            if let surface = CVPixelBufferGetIOSurface(pixelBuffer)?.takeUnretainedValue() {
+                updateContentsIfNeeded(surface)
+            }
         default: break
         }
         if frame.size != size {
             frame.size = size
         }
+    }
+
+    private func updateContentsIfNeeded(_ value: AnyObject) {
+        if let current = contents as AnyObject?, current === value { return }
+        contents = value
     }
 
     func releaseImage() {
