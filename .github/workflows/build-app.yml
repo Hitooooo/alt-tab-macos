@@ -12,7 +12,7 @@ permissions:
 jobs:
   build:
     name: Build downloadable app
-    runs-on: macos-26
+    runs-on: xcode-27
     env:
       APP_NAME: CmdTab
       DERIVED_DATA: DerivedData
